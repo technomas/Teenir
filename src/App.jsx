@@ -522,6 +522,7 @@ export default function App() {
        </button>
        </form>
        </div>
+      </div>
         {/* Social & Payments */}
         <div>
           {/* Follow Us */}
