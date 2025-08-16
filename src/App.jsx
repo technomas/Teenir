@@ -18,6 +18,7 @@ export default function App() {
         "https://placehold.co/400x600/505070/ffffff?text=Galaxy+4",
         "https://placehold.co/400x600/626286/ffffff?text=Galaxy+5",
       ],
+      buyLink: "https://paypal.me/yourname/cyberpunk", // ← رابط مختلف
       originalPrice: 6,
       discount: 50,
       rating: 4.8,
@@ -44,6 +45,7 @@ export default function App() {
         "https://placehold.co/400x600/3171a5/ffffff?text=Cyber+4",
         "https://placehold.co/400x600/3c85bc/ffffff?text=Cyber+5",
       ],
+      buyLink: "https://printly.com/", 
       originalPrice: 6,
       discount: 50,
       rating: 4.9,
@@ -394,9 +396,14 @@ export default function App() {
                   </li>
                 ))}
               </ul>
-              <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-colors shadow-md">
-                Buy Now
-              </button>
+              <a
+              href={selectedDesign.buyLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-xl text-lg text-center transition-colors shadow-md"
+              >
+              Buy Now
+             </a>
             </div>
           </div>
 
