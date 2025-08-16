@@ -562,32 +562,30 @@ export default function App() {
           </div>
 
           {/* Payment Methods */}
-          <div>
-            <h2 className="text-xl font-bold mb-4">Payments</h2>
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-              {/* Litecoin */}
-              <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
-                <img src="https://i.ibb.co/Hjs6NsQ/buy-ltc.png" alt="buy-ltc" className="h-10 hover:scale-105 transition-transform" />
-              </a>
+<div>
+  <h2 className="text-2xl font-bold mb-4">Payments</h2> {/* ← اللون الأحمر هنا */}
+  <div className="flex flex-row gap-4 justify-center md:justify-start"> {/* ← عرض أفقي */}
+    {/* Litecoin */}
+    <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.ibb.co/Hjs6NsQ/buy-ltc.png" alt="buy-ltc" className="h-10 hover:scale-105 transition-transform" />
+    </a>
 
-              {/* Bitcoin */}
-              <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
-                <img src="https://i.ibb.co/HptcKHmr/buy-btc.png" alt="buy-btc" className="h-10 hover:scale-105 transition-transform" />
-              </a>
+    {/* Bitcoin */}
+    <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.ibb.co/HptcKHmr/buy-btc.png" alt="buy-btc" className="h-10 hover:scale-105 transition-transform" />
+    </a>
 
-              {/* Credit Card */}
-              <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
-                <img src="https://i.ibb.co/GvhCDLf4/cc1.png" alt="cc1" className="h-10 hover:scale-105 transition-transform" />
-              </a>
+    {/* Credit Card */}
+    <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.ibb.co/GvhCDLf4/cc1.png" alt="cc1" className="h-10 hover:scale-105 transition-transform" />
+    </a>
 
-              {/* Perfect Money */}
-              <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
-                <img src="https://i.ibb.co/xtW552xY/buy-perfectmoney.png" alt="buy-perfectmoney" className="h-10 hover:scale-105 transition-transform" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+    {/* Perfect Money */}
+    <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
+      <img src="https://i.ibb.co/xtW552xY/buy-perfectmoney.png" alt="buy-perfectmoney" className="h-10 hover:scale-105 transition-transform" />
+    </a>
+  </div>
+</div>
 
       {/* Copyright */}
       <div className="mt-12 pt-6 border-t border-gray-800 text-center text-gray-400 text-sm">
