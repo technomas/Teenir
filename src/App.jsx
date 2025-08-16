@@ -514,12 +514,14 @@ export default function App() {
               required
               className="border border-gray-600 bg-black text-white px-4 py-2 rounded-lg flex-grow focus:outline-none"
             />
+            <span> 
             <button
               type="submit"
               className="bg-white text-black font-bold py-2 px-4 rounded-lg hover:bg-gray-200"
             >
               SUBMIT
             </button>
+              </span>
           </form>
         </div>
 
