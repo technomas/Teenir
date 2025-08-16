@@ -493,37 +493,35 @@ export default function App() {
         </div>
 
         {/* Newsletter */}
-        <div>
-          <h2 className="text-2xl font-bold mb-4">NEWSLETTER SIGN UP</h2>
-          <p className="text-gray-300 mb-4 text-sm">
-            Sign up for exclusive updates & new arrivals.
-          </p>
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              alert(`Thank you, ${email}!`);
-              setEmail("");
-            }}
-            className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2"
-          >
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
-              required
-              className="border border-gray-600 bg-black text-white px-4 py-2 rounded-lg flex-grow focus:outline-none"
-            />
-            <span></span> 
-            <button
-              type="submit"
-              className="bg-white text-black font-bold py-2 px-4 rounded-lg hover:bg-gray-200"
-            >
-              SUBMIT
-            </button>
-          </form>
-        </div>
-
+ <div>
+   <h2 className="text-2xl font-bold mb-4">NEWSLETTER SIGN UP</h2>
+    <p className="text-gray-300 mb-4 text-sm">
+       Sign up for exclusive updates & new arrivals.
+   </p>
+    <form
+      onSubmit={(e) => {
+       e.preventDefault();
+       alert(`Thank you, ${email}!`);
+       setEmail("");
+     }}
+       className="flex flex-col space-y-2"
+      >
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Enter your email"
+        required
+        className="border border-gray-600 bg-black text-white px-4 py-2 rounded-lg focus:outline-none"
+       />
+       <button
+         type="submit"
+         className="bg-white text-black font-bold py-2 px-4 rounded-lg hover:bg-gray-200 mt-2"
+        >
+         Submit
+       </button>
+       </form>
+       </div>
         {/* Social & Payments */}
         <div>
           {/* Follow Us */}
