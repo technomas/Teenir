@@ -6,7 +6,7 @@ export default function App() {
   const [email, setEmail] = useState("");
   const [activeReviewIndex, setActiveReviewIndex] = useState(0);
 
-  // بيانات التصاميم مع 5 صور لكل تصميم
+  // بيانات التصاميم مع 5 صور لكل تصميم (بدون مسافات زائدة في الروابط)
   const designs = [
     {
       id: 1,
@@ -301,7 +301,7 @@ export default function App() {
                 <img
                   src={selectedDesign.images[currentImageIndex]}
                   alt={`Image ${currentImageIndex + 1}`}
-                  className="w-full h-96 object-cover rounded-xl shadow-lg"
+                  className="w-full max-h-[500px] object-cover rounded-xl shadow-lg"
                 />
                 <button
                   onClick={handlePrevImage}
@@ -415,7 +415,7 @@ export default function App() {
                   <StarRating rating={currentReview.rating} />
                   <span className="font-semibold ml-2">{currentReview.author}</span>
                 </div>
-                <p className="text-gray-700 mb-2 italic">"{currentReview.comment}"</p>
+                <p className="text-gray-700 italic mb-2">"{currentReview.comment}"</p>
               </div>
               <button
                 onClick={handlePrevReview}
@@ -543,7 +543,7 @@ export default function App() {
               aria-label="TikTok"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02 3.88-.02 7.76-.01 11.64-.02 1.53 0 2.71 1.08 2.71 2.62 0 1.53-.01 3.06-.02 4.59-.01 1.23-.9 2.27-2.1 2.44-1.55.21-3.1.43-4.65.63-1.18.16-2.31.54-3.32 1.15-2.33 1.38-4.66 2.77-6.98 4.16-1.4.84-2.8 1.68-4.2 2.51-1.46.87-2.87 1.78-4.32 2.64-1.27.75-2.61.41-3.36-.85-.75-1.26-.41-2.61.85-3.36 1.33-.79 2.67-1.58 4.01-2.36 1.4-.81 2.8-1.63 4.2-2.45.81-.48 1.61-.96 2.42-1.44 1.09-.66 1.49-1.95.83-3.04-.25-.42-.5-.84-.76-1.25-.25-.42-.51-.84-.76-1.25-.44-.73-.88-1.46-1.32-2.19-.21-.35-.41-.7-.61-1.05-.1-.18-.14-.3-.08-.47.06-.17.18-.28.35-.33.16-.05.33-.04.5.01.17.05.3.15.4.3.15.22.3.45.44.67.14.23.28.46.42.69.14.24.28.48.42.72.29.5.57 1 .86 1.49.14.24.28.48.42.72.14.25.27.5.41.75.07.13.14.26.21.39.07.13.14.26.2.39.06.13.13.26.19.39.06.13.12.26.18.39.06.13.12.26.17.39.05.13.1.26.15.39.05.13.1.26.14.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04......"/>
+                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02 3.88-.02 7.76-.01 11.64-.02 1.53 0 2.71 1.08 2.71 2.62 0 1.53-.01 3.06-.02 4.59-.01 1.23-.9 2.27-2.1 2.44-1.55.21-3.1.43-4.65.63-1.18.16-2.31.54-3.32 1.15-2.33 1.38-4.66 2.77-6.98 4.16-1.4.84-2.8 1.68-4.2 2.51-1.46.87-2.87 1.78-4.32 2.64-1.27.75-2.61.41-3.36-.85-.75-1.26-.41-2.61.85-3.36 1.33-.79 2.67-1.58 4.01-2.36 1.4-.81 2.8-1.63 4.2-2.45.81-.48 1.61-.96 2.42-1.44 1.09-.66 1.49-1.95.83-3.04-.25-.42-.5-.84-.76-1.25-.25-.42-.51-.84-.76-1.25-.44-.73-.88-1.46-1.32-2.19-.21-.35-.41-.7-.61-1.05-.1-.18-.14-.3-.08-.47.06-.17.18-.28.35-.33.16-.05.33-.04.5.01.17.05.3.15.4.3.15.22.3.45.44.67.14.23.28.46.42.69.14.24.28.48.42.72.29.5.57 1 .86 1.49.14.24.28.48.42.72.14.25.27.5.41.75.07.13.14.26.21.39.07.13.14.26.2.39.06.13.13.26.19.39.06.13.12.26.18.39.06.13.12.26.17.39.05.13.1.26.15.39.05.13.1.26.14.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04......"/>
               </svg>
             </a>
 
@@ -562,26 +562,29 @@ export default function App() {
           </div>
 
           {/* Payment Methods */}
-          <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-            {/* Litecoin */}
-            <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
-              <img src="https://i.ibb.co/Hjs6NsQ/buy-ltc.png" alt="buy-ltc" className="h-10 hover:scale-105 transition-transform" />
-            </a>
+          <div>
+            <h2 className="text-xl font-bold mb-4">Payments</h2>
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+              {/* Litecoin */}
+              <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
+                <img src="https://i.ibb.co/Hjs6NsQ/buy-ltc.png" alt="buy-ltc" className="h-10 hover:scale-105 transition-transform" />
+              </a>
 
-            {/* Bitcoin */}
-            <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
-              <img src="https://i.ibb.co/HptcKHmr/buy-btc.png" alt="buy-btc" className="h-10 hover:scale-105 transition-transform" />
-            </a>
+              {/* Bitcoin */}
+              <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
+                <img src="https://i.ibb.co/HptcKHmr/buy-btc.png" alt="buy-btc" className="h-10 hover:scale-105 transition-transform" />
+              </a>
 
-            {/* Credit Card */}
-            <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
-              <img src="https://i.ibb.co/GvhCDLf4/cc1.png" alt="cc1" className="h-10 hover:scale-105 transition-transform" />
-            </a>
+              {/* Credit Card */}
+              <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
+                <img src="https://i.ibb.co/GvhCDLf4/cc1.png" alt="cc1" className="h-10 hover:scale-105 transition-transform" />
+              </a>
 
-            {/* Perfect Money */}
-            <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
-              <img src="https://i.ibb.co/xtW552xY/buy-perfectmoney.png" alt="buy-perfectmoney" className="h-10 hover:scale-105 transition-transform" />
-            </a>
+              {/* Perfect Money */}
+              <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
+                <img src="https://i.ibb.co/xtW552xY/buy-perfectmoney.png" alt="buy-perfectmoney" className="h-10 hover:scale-105 transition-transform" />
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -594,4 +597,4 @@ export default function App() {
   );
 
   return currentView === "home" ? <HomeScreen /> : <DetailScreen />;
-                }
+        }
