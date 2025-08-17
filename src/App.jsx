@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  React, { useState, useEffect } from "react";
 
 export default function App() {
   const [currentView, setCurrentView] = useState("home");
@@ -123,8 +123,7 @@ export default function App() {
             >
               TeeNira
             </h1>
-            <p className="text-gray-600 text-sm"span Art>
-            </p>
+            <p className="text-gray-600 text-sm"span Art></p>
           </div>
         </header>
 
