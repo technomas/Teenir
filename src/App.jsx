@@ -18,7 +18,7 @@ export default function App() {
         "https://placehold.co/400x600/505070/ffffff?text=Galaxy+4",
         "https://placehold.co/400x600/626286/ffffff?text=Galaxy+5",
       ],
-      buyLink: "https://paypal.me/yourname/cyberpunk", // ← رابط مختلف
+      buyLink: "https://paypal.me/yourname/cyberpunk", // ← رابط مختلف (تم إزالة المسافات)
       originalPrice: 6,
       discount: 50,
       rating: 4.8,
@@ -45,7 +45,7 @@ export default function App() {
         "https://placehold.co/400x600/3171a5/ffffff?text=Cyber+4",
         "https://placehold.co/400x600/3c85bc/ffffff?text=Cyber+5",
       ],
-      buyLink: "https://printly.com/", 
+      buyLink: "https://printly.com/",
       originalPrice: 6,
       discount: 50,
       rating: 4.9,
@@ -191,7 +191,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* Customer Reviews - Auto Sliding */}
+        {/* Customer Reviews */}
         <section className="mt-16 px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">
             Let customers speak for us
@@ -397,13 +397,13 @@ export default function App() {
                 ))}
               </ul>
               <a
-              href={selectedDesign.buyLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-xl text-lg text-center transition-colors shadow-md"
+                href={selectedDesign.buyLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-xl text-lg text-center transition-colors shadow-md"
               >
-              Buy Now
-             </a>
+                Buy Now
+              </a>
             </div>
           </div>
 
@@ -472,7 +472,6 @@ export default function App() {
   const Footer = () => (
     <footer className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-
         {/* Customer Service */}
         <div>
           <h2 className="text-2xl font-bold mb-4">CUSTOMER SERVICE</h2>
@@ -493,36 +492,36 @@ export default function App() {
         </div>
 
         {/* Newsletter */}
- <div>
-   <h2 className="text-2xl font-bold mb-4">NEWSLETTER SIGN UP</h2>
-    <p className="text-gray-300 mb-4 text-sm">
-       Sign up for exclusive updates & new arrivals.
-   </p>
-    <form
-      onSubmit={(e) => {
-       e.preventDefault();
-       alert(`Thank you, ${email}!`);
-       setEmail("");
-     }}
-       className="flex flex-col space-y-2"
-      >
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Enter your email"
-        required
-        className="border border-gray-600 bg-black text-white px-4 py-2 rounded-lg focus:outline-none"
-       />
-       <button
-         type="submit"
-         className="bg-white text-black font-bold py-2 px-4 rounded-lg hover:bg-gray-200 mt-2"
-        >
-         Submit
-       </button>
-       </form>
-       </div>
-      </div>
+        <div>
+          <h2 className="text-2xl font-bold mb-4">NEWSLETTER SIGN UP</h2>
+          <p className="text-gray-300 mb-4 text-sm">
+            Sign up for exclusive updates & new arrivals.
+          </p>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert(`Thank you, ${email}!`);
+              setEmail("");
+            }}
+            className="flex flex-col space-y-2"
+          >
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              required
+              className="border border-gray-600 bg-black text-white px-4 py-2 rounded-lg focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="bg-white text-black font-bold py-2 px-4 rounded-lg hover:bg-gray-200 mt-2"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+
         {/* Social & Payments */}
         <div>
           {/* Follow Us */}
@@ -550,7 +549,7 @@ export default function App() {
               aria-label="TikTok"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02 3.88-.02 7.76-.01 11.64-.02 1.53 0 2.71 1.08 2.71 2.62 0 1.53-.01 3.06-.02 4.59-.01 1.23-.9 2.27-2.1 2.44-1.55.21-3.1.43-4.65.63-1.18.16-2.31.54-3.32 1.15-2.33 1.38-4.66 2.77-6.98 4.16-1.4.84-2.8 1.68-4.2 2.51-1.46.87-2.87 1.78-4.32 2.64-1.27.75-2.61.41-3.36-.85-.75-1.26-.41-2.61.85-3.36 1.33-.79 2.67-1.58 4.01-2.36 1.4-.81 2.8-1.63 4.2-2.45.81-.48 1.61-.96 2.42-1.44 1.09-.66 1.49-1.95.83-3.04-.25-.42-.5-.84-.76-1.25-.25-.42-.51-.84-.76-1.25-.44-.73-.88-1.46-1.32-2.19-.21-.35-.41-.7-.61-1.05-.1-.18-.14-.3-.08-.47.06-.17.18-.28.35-.33.16-.05.33-.04.5.01.17.05.3.15.4.3.15.22.3.45.44.67.14.23.28.46.42.69.14.24.28.48.42.72.29.5.57 1 .86 1.49.14.24.28.48.42.72.14.25.27.5.41.75.07.13.14.26.21.39.07.13.14.26.2.39.06.13.13.26.19.39.06.13.12.26.18.39.06.13.12.26.17.39.05.13.1.26.15.39.05.13.1.26.14.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04......"/>
+                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02 3.88-.02 7.76-.01 11.64-.02 1.53 0 2.71 1.08 2.71 2.62 0 1.53-.01 3.06-.02 4.59-.01 1.23-.9 2.27-2.1 2.44-1.55.21-3.1.43-4.65.63-1.18.16-2.31.54-3.32 1.15-2.33 1.38-4.66 2.77-6.98 4.16-1.4.84-2.8 1.68-4.2 2.51-1.46.87-2.87 1.78-4.32 2.64-1.27.75-2.61.41-3.36-.85-.75-1.26-.41-2.61.85-3.36 1.33-.79 2.67-1.58 4.01-2.36 1.4-.81 2.8-1.63 4.2-2.45.81-.48 1.61-.96 2.42-1.44 1.09-.66 1.49-1.95.83-3.04-.25-.42-.5-.84-.76-1.25-.25-.42-.51-.84-.76-1.25-.44-.73-.88-1.46-1.32-2.19-.21-.35-.41-.7-.61-1.05-.1-.18-.14-.3-.08-.47.06-.17.18-.28.35-.33.16-.05.33-.04.5.01.17.05.3.15.4.3.15.22.3.45.44.67.14.23.28.46.42.69.14.24.28.48.42.72.29.5.57 1 .86 1.49.14.24.28.48.42.72.14.25.27.5.41.75.07.13.14.26.21.39.07.13.14.26.2.39.06.13.13.26.19.39.06.13.12.26.18.39.06.13.12.26.17.39.05.13.1.26.15.39.05.13.1.26.14.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04.13.08.26.12.39.04......"/>
               </svg>
             </a>
 
@@ -569,30 +568,32 @@ export default function App() {
           </div>
 
           {/* Payment Methods */}
-<div>
-  <h2 className="text-2xl font-bold mb-4">Payments</h2> {/* ← اللون الأحمر هنا */}
-  <div className="flex flex-row gap-4 justify-center md:justify-start"> {/* ← عرض أفقي */}
-    {/* Litecoin */}
-    <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
-      <img src="https://i.ibb.co/Hjs6NsQ/buy-ltc.png" alt="buy-ltc" className="h-10 hover:scale-105 transition-transform" />
-    </a>
+          <div>
+            <h2 className="text-2xl font-bold mb-4 text-red-500">Payments</h2>
+            <div className="flex flex-row gap-4 justify-center md:justify-start">
+              {/* Litecoin */}
+              <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
+                <img src="https://i.ibb.co/Hjs6NsQ/buy-ltc.png" alt="buy-ltc" className="h-10 hover:scale-105 transition-transform" />
+              </a>
 
-    {/* Bitcoin */}
-    <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
-      <img src="https://i.ibb.co/HptcKHmr/buy-btc.png" alt="buy-btc" className="h-10 hover:scale-105 transition-transform" />
-    </a>
+              {/* Bitcoin */}
+              <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
+                <img src="https://i.ibb.co/HptcKHmr/buy-btc.png" alt="buy-btc" className="h-10 hover:scale-105 transition-transform" />
+              </a>
 
-    {/* Credit Card */}
-    <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
-      <img src="https://i.ibb.co/GvhCDLf4/cc1.png" alt="cc1" className="h-10 hover:scale-105 transition-transform" />
-    </a>
+              {/* Credit Card */}
+              <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
+                <img src="https://i.ibb.co/GvhCDLf4/cc1.png" alt="cc1" className="h-10 hover:scale-105 transition-transform" />
+              </a>
 
-    {/* Perfect Money */}
-    <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
-      <img src="https://i.ibb.co/xtW552xY/buy-perfectmoney.png" alt="buy-perfectmoney" className="h-10 hover:scale-105 transition-transform" />
-    </a>
-  </div>
-</div>
+              {/* Perfect Money */}
+              <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
+                <img src="https://i.ibb.co/xtW552xY/buy-perfectmoney.png" alt="buy-perfectmoney" className="h-10 hover:scale-105 transition-transform" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Copyright */}
       <div className="mt-12 pt-6 border-t border-gray-800 text-center text-gray-400 text-sm">
@@ -602,4 +603,4 @@ export default function App() {
   );
 
   return currentView === "home" ? <HomeScreen /> : <DetailScreen />;
-        }
+                    }
