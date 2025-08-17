@@ -599,8 +599,7 @@ export default function App() {
       <div className="mt-12 pt-6 border-t border-gray-800 text-center text-gray-400 text-sm">
         &copy; {new Date().getFullYear()} TeeNira. All rights reserved.
       </div>
-     </div> 
-    </footer>
+      </footer>
   );
 
   return currentView === "home" ? <HomeScreen /> : <DetailScreen />;
