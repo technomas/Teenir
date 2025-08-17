@@ -548,13 +548,17 @@ export default function App() {
               className="text-white hover:text-gray-300 transition-colors"
               aria-label="TikTok"
             >
-               <svg
-                 xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 48 48"
-                 className="h-6 w-6"
-                 fill="currentColor"
-                 >
-                 <path d="M41,17.5c-2.5,0-4.8-0.8-6.7-2.2c-1.9-1.4-3.2-3.4-3.7-5.7V9h-6v21.6c0,3-2.4,5.4-5.4,5.4s-5.4-2.4-5.4-5.4s2.4-5.4,5.4-5.4c0.4,0,0.8,0,1.2,0.1V19c-0.4,0-0.8-0.1-1.2-0.1c-6,0-11,4.9-11,11s4.9,11,11,11s11-4.9,11-11V22c2.5,1.8,5.6,2.9,9,2.9V17.5z"/>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 48 48"
+                  className="h-6 w-6"
+                  fill="currentColor"
+                  >
+                  <path d="M41,17.5c-2.5,0-4.8-0.8-6.7-2.2c-1.9-1.4-3.2-3.4-3.7-5.7V9h-6v21.6
+                    c0,3-2.4,5.4-5.4,5.4s-5.4-2.4-5.4-5.4s2.4-5.4,5.4-5.4c0.4,0,0.8,0,1.2,0.1V19
+                    c-0.4,0-0.8-0.1-1.2-0.1c-6,0-11,4.9-11,11s4.9,11,11,11s11-4.9,11-11V22
+                    c2.5,1.8,5.6,2.9,9,2.9V17.5z"/>
+                </svg>
             </a>
 
             {/* Pinterest */}
