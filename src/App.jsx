@@ -123,7 +123,7 @@ export default function App() {
             >
               TeeNira
             </h1>
-            <p className="text-gray-600 text-sm">Wear Your Art</p>
+            <p className="text-gray-600 text-sm"span Art</p>
           </div>
         </header>
 
@@ -369,7 +369,7 @@ export default function App() {
                 <span className="text-xl text-gray-500 line-through">
                   ${selectedDesign.originalPrice}
                 </span>
-                <span textred-100 text-red-800 text-sm font-semibold px-3 py-1 rounded">
+                <span className="textred-100 text-red-800 text-sm font-semibold px-3 py-1 rounded">
                   {selectedDesign.discount}% OFF
                 </span>
               </div>
