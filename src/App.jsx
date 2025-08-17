@@ -577,7 +577,7 @@ export default function App() {
 
           {/* Payment Methods */}
           <div>
-            <h2 className="text-2xl font-bold mb-4 text-yellow-500">PAYMENTS</h2>
+            <h2 className="text-2xl font-bold mb-4 text-red-500">PAYMENTS</h2>
             <div className="flex flex-row gap-4 justify-center md:justify-start">
               {/* Litecoin */}
               <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
