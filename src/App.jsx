@@ -10,7 +10,7 @@ export default function App() {
   const [email, setEmail] = useState("");
   const [activeReviewIndex, setActiveReviewIndex] = useState(0);
 
-  // بيانات التصاميم (4 منتجات) - تمت إزالة المسافات الزائدة في الروابط
+  // بيانات التصاميم (4 منتجات)
   const designs = [
     {
       id: 1,
@@ -185,8 +185,8 @@ export default function App() {
           </div>
         </header>
 
-        {/* Hero Banner - Full Width */}
-<section className="relative mt-16 py-16 -mx-4 sm:-mx-6 lg:-mx-8 overflow-hidden">
+        {/* Hero Banner - Full Width + No Top Margin */}
+<section className="relative py-8 -mx-4 sm:-mx-6 lg:-mx-8 overflow-hidden">
   {/* الخلفية الكاملة */}
   <div
     className="relative w-full h-64 md:h-80 bg-cover bg-center rounded-none shadow-lg"
@@ -216,7 +216,7 @@ export default function App() {
   </div>
 
   {/* العنوان الإضافي تحت الصورة (في container عادي) */}
-  <div className="mt-12 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+  <div className="mt-8 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
     <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
       Essential Blanks
     </h2>
@@ -226,9 +226,9 @@ export default function App() {
   </div>
 </section>
 
-        {/* Designs Grid */}
+        {/* Designs Grid - 2 per row on mobile */}
         <section className="px-4 sm:px-6 lg:px-8 pb-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {designs.map((design) => {
               const discountedPrice = calculateDiscountedPrice(design.originalPrice, design.discount);
               return (
@@ -322,7 +322,7 @@ export default function App() {
   const DetailScreen = () => {
     const [selectedImage, setSelectedImage] = useState(0);
     const [reviewIndex, setReviewIndex] = useState(0);
-    const swiperRef = useRef(null); // ← لربط Swiper
+    const swiperRef = useRef(null);
 
     const handlePrevReview = () => {
       setReviewIndex(
@@ -608,4 +608,4 @@ export default function App() {
   );
 
   return currentView === "home" ? <HomeScreen /> : <DetailScreen />;
-        }
+                    }
