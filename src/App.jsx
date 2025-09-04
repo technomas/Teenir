@@ -186,10 +186,10 @@ export default function App() {
         </header>
 
         {/* Hero Banner */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 text-center">
-          <img
-            src="https://placehold.co/1200x400/3b82f6/ffffff?text=Man+Wearing+Tee"
-            alt="Hero Banner"
+        <section className="relative h-[60vh] md:h-[70vh] max-h-[600px] flex items-center justify-center overflow-hidden">
+        <img
+            src="/images/herobanner.jpg"
+          alt="Hero Banner"
             className="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg mx-auto mb-6"
           />
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
