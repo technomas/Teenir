@@ -9,110 +9,118 @@ export default function App() {
   const [selectedDesign, setSelectedDesign] = useState(null);
   const [email, setEmail] = useState("");
   const [activeReviewIndex, setActiveReviewIndex] = useState(0);
-
+  
+  useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, [currentView, selectedDesign]);
   // بيانات التصاميم (4 منتجات)
   const designs = [
     {
       id: 1,
-      name: "Galaxy Warrior",
+      name: "Basketball Mom SVG & PNG Files",
       images: [
-        "https://placehold.co/400x600/1a1a2e/ffffff?text=Galaxy+1",
-        "https://placehold.co/400x600/2d2d44/ffffff?text=Galaxy+2",
-        "https://placehold.co/400x600/3e3e5a/ffffff?text=Galaxy+3",
-        "https://placehold.co/400x600/505070/ffffff?text=Galaxy+4",
+        "https://placehold.co/400x600/1a1a2e/ffffff?text=Basketball+Design",
+        "https://placehold.co/400x600/2d2d44/ffffff?text=Basketball+Design+2",
+        "https://placehold.co/400x600/3e3e5a/ffffff?text=Basketball+Design+3",
       ],
-      buyLink: "https://paypal.me/yourname/cyberpunk",
-      originalPrice: 6,
+      buyLink: "https://paypal.me/yourname/basketball",
+      originalPrice: 4.51,
       discount: 50,
-      rating: 4.8,
-      views: 1250,
-      description: "A powerful warrior standing in the middle of a cosmic galaxy, ready to defend the universe.",
+      rating: 5.0,
+      reviewsCount: 510,
+      description: "Basketball Mom PNG and SVG files perfect for shirts, mugs, and more. Digital download includes multiple formats.",
       features: [
-        "Premium cotton fabric",
-        "Soft and breathable material",
-        "Unisex fit",
-        "High-definition print",
+        "High-resolution PNG (300 DPI)",
+        "SVG file for cutting machines",
+        "Instant digital download",
+        "Commercial use allowed",
       ],
+      compatibility: ["Ai", "Ps", "Id"],
+      tags: ["Basketball", "Sports", "Mom"],
+      isBestseller: true,
       reviews: [
-        { rating: 5, comment: "Absolutely stunning design!", author: "John Doe" },
-        { rating: 4, comment: "Great shirt, perfect fit.", author: "Jane Smith" },
+        { rating: 5, comment: "Perfect for my basketball team shirts!", author: "Sarah J." },
+        { rating: 5, comment: "Great quality and fast download.", author: "Mike T." },
       ],
     },
     {
       id: 2,
-      name: "Neon Cyberpunk",
+      name: "Custom T-Shirt Design Service",
       images: [
-        "https://placehold.co/400x600/0f3460/ffffff?text=Cyber+1",
-        "https://placehold.co/400x600/1a4877/ffffff?text=Cyber+2",
-        "https://placehold.co/400x600/265d8e/ffffff?text=Cyber+3",
+        "https://placehold.co/400x600/0f3460/ffffff?text=Custom+Design",
+        "https://placehold.co/400x600/1a4877/ffffff?text=Custom+Design+2",
       ],
       buyLink: "https://printly.com/",
-      originalPrice: 6,
-      discount: 50,
-      rating: 4.9,
-      views: 2100,
-      description: "Futuristic city lights reflecting on a lone rider with glowing tech armor.",
+      originalPrice: 24.97,
+      discount: 60,
+      rating: 4.8,
+      reviewsCount: 126,
+      description: "Professional custom t-shirt design service for your business or event. Get a unique design tailored to your needs.",
       features: [
-        "Eco-friendly ink printing",
-        "Durable for daily wear",
-        "Slight stretch for comfort",
-        "Resistant to fading",
+        "Custom design from scratch",
+        "Unlimited revisions",
+        "Fast turnaround",
+        "Print-ready files",
       ],
+      compatibility: ["Ai", "Ps", "Id", "Service"],
+      tags: ["Custom", "Design", "Service"],
+      isDigitalService: true,
       reviews: [
-        { rating: 5, comment: "Looks amazing! Perfect for any fan.", author: "Alex T." },
-        { rating: 5, comment: "Everyone asks where I got it!", author: "Sarah L." },
+        { rating: 5, comment: "Amazing design service! Will order again.", author: "Jessica L." },
+        { rating: 4, comment: "Good communication and quality work.", author: "Robert K." },
       ],
     },
     {
       id: 3,
-      name: "Mountain Echo",
+      name: "Superheroes Digital Pack",
       images: [
-        "https://placehold.co/400x600/1f4037/ffffff?text=Mountain+1",
-        "https://placehold.co/400x600/2d6a4f/ffffff?text=Mountain+2",
-        "https://placehold.co/400x600/3d8b6b/ffffff?text=Mountain+3",
-        "https://placehold.co/400x600/4db68c/ffffff?text=Mountain+4",
+        "https://placehold.co/400x600/1f4037/ffffff?text=Superheroes+Pack",
+        "https://placehold.co/400x600/2d6a4f/ffffff?text=Superheroes+Pack+2",
       ],
-      buyLink: "https://printly.com/",
-      originalPrice: 5.8,
+      buyLink: "https://paypal.me/yourname/superheroes",
+      originalPrice: 5.99,
       discount: 40,
-      rating: 4.7,
-      views: 980,
-      description: "Serene mountain peaks under a golden sunrise, symbolizing peace and adventure.",
+      rating: 4.9,
+      reviewsCount: 287,
+      description: "Collection of superhero-themed SVG and PNG files. Perfect for kids' clothing and party decorations.",
       features: [
-        "Organic cotton blend",
-        "Lightweight and soft",
-        "Unisex oversized cut",
-        "Eco-friendly dyes",
+        "Multiple superhero designs",
+        "SVG and PNG formats",
+        "High-resolution files",
+        "Commercial license",
       ],
+      compatibility: ["Ai", "Ps"],
+      tags: ["Superheroes", "Kids", "Digital"],
+      isBestseller: true,
       reviews: [
-        { rating: 5, comment: "Perfect for hiking trips!", author: "Mark R." },
-        { rating: 4, comment: "Love the calm vibe of the design.", author: "Lena K." },
+        { rating: 5, comment: "My son loves these designs!", author: "Amanda R." },
+        { rating: 5, comment: "Perfect for my daycare business.", author: "Thomas W." },
       ],
     },
     {
       id: 4,
-      name: "Quantum Flux",
+      name: "Vintage Motorcycle Design",
       images: [
-        "https://placehold.co/400x600/0c0c2e/ffffff?text=Quantum+1",
-        "https://placehold.co/400x600/1a1a4a/ffffff?text=Quantum+2",
-        "https://placehold.co/400x600/282866/ffffff?text=Quantum+3",
-        "https://placehold.co/400x600/363682/ffffff?text=Quantum+4",
+        "https://placehold.co/400x600/0c0c2e/ffffff?text=Motorcycle+Design",
+        "https://placehold.co/400x600/1a1a4a/ffffff?text=Motorcycle+Design+2",
       ],
-      buyLink: "https://paypal.me/yourname/quantum",
-      originalPrice: 6.5,
-      discount: 55,
-      rating: 4.9,
-      views: 1870,
-      description: "Abstract representation of quantum energy waves and particles in motion.",
+      buyLink: "https://paypal.me/yourname/motorcycle",
+      originalPrice: 3.99,
+      discount: 45,
+      rating: 4.7,
+      reviewsCount: 192,
+      description: "Vintage motorcycle themed design files. Retro style perfect for biker clubs and enthusiasts.",
       features: [
-        "Anti-shrink technology",
-        "Double-stitched seams",
-        "Vibrant color retention",
-        "Breathable microfiber",
+        "Vintage style design",
+        "Multiple file formats",
+        "Easy to customize",
+        "Vector and raster files",
       ],
+      compatibility: ["Ai", "Ps", "Id"],
+      tags: ["Motorcycle", "Vintage", "Biker"],
       reviews: [
-        { rating: 5, comment: "Science lover's dream!", author: "Dr. Evans" },
-        { rating: 5, comment: "So many compliments on this one.", author: "Tina M." },
+        { rating: 5, comment: "Great vintage look for our club shirts.", author: "Dave B." },
+        { rating: 4, comment: "Good quality files, easy to work with.", author: "Lisa M." },
       ],
     },
   ];
@@ -132,22 +140,25 @@ export default function App() {
   };
 
   // نجمة التقييم
-  const StarRating = ({ rating }) => (
-    <div className="flex items-center space-x-1">
-      {[...Array(5)].map((_, i) => (
-        <svg
-          key={i}
-          xmlns="http://www.w3.org/2000/svg"
-          className={`h-4 w-4 ${i < Math.floor(rating) ? "text-yellow-400" : "text-gray-300"}`}
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-.18-1.81.588-1.81l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
-        </svg>
-      ))}
-      <span className="ml-1 text-sm text-gray-600">{rating}</span>
-    </div>
-  );
+  const StarRating = ({ rating, size = "md" }) => {
+    const starSize = size === "sm" ? "h-3 w-3" : "h-4 w-4";
+    return (
+      <div className="flex items-center space-x-1">
+        {[...Array(5)].map((_, i) => (
+          <svg
+            key={i}
+            xmlns="http://www.w3.org/2000/svg"
+            className={`${starSize} ${i < Math.floor(rating) ? "text-yellow-400" : "text-gray-300"}`}
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
+          </svg>
+        ))}
+        <span className="ml-1 text-sm text-gray-600">{rating.toFixed(1)}</span>
+      </div>
+    );
+  };
 
   // جمع جميع التقييمات
   const allReviews = designs.flatMap(d => d.reviews);
@@ -161,6 +172,24 @@ export default function App() {
     }, 3000);
     return () => clearInterval(interval);
   }, [totalReviews]);
+
+  // أيقونات التوافق
+  const CompatibilityIcons = ({ compatibility }) => (
+    <div className="flex items-center space-x-2 mt-2">
+      {compatibility.includes("Ai") && (
+        <span className="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-1 rounded">Ai</span>
+      )}
+      {compatibility.includes("Ps") && (
+        <span className="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-1 rounded">Ps</span>
+      )}
+      {compatibility.includes("Id") && (
+        <span className="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-1 rounded">Id</span>
+      )}
+      {compatibility.includes("Service") && (
+        <span className="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-1 rounded">Service</span>
+      )}
+    </div>
+  );
 
   // الصفحة الرئيسية
   const HomeScreen = () => {
@@ -180,88 +209,106 @@ export default function App() {
           </div>
         </header>
 
-        {/* Hero Banner - Full Width + No Top Margin */}
-<section className="relative py-8 -mx-4 sm:-mx-6 lg:-mx-8 overflow-hidden">
-  {/* الخلفية الكاملة */}
-  <div
-    className="relative w-full h-64 md:h-80 bg-cover bg-center rounded-none shadow-lg"
-    style={{ backgroundImage: "url('/images/herobanner.jpg')" }}
-  >
-    {/* Overlay شفاف */}
-    <div className="absolute inset-0 bg-black bg-opacity-40 rounded-none"></div>
+        {/* Hero Banner */}
+        <section className="relative py-8 -mx-4 sm:-mx-6 lg:-mx-8 overflow-hidden">
+          <div
+            className="relative w-full h-64 md:h-80 bg-cover bg-center rounded-none shadow-lg"
+            style={{ backgroundImage: "url('/images/herobanner.jpg')" }}
+          >
+            <div className="absolute inset-0 bg-black bg-opacity-40 rounded-none"></div>
+            <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
+              <div className="mb-6 px-4 py-1 bg-white bg-opacity-20 text-white border border-white border-opacity-30 rounded-full text-sm font-medium backdrop-blur-sm">
+                Premium T-Shirt Designs
+              </div>
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight text-center">
+                Express Your
+                <br />
+                <span className="block bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
+                  Unique Style
+                </span>
+              </h2>
+              <p className="text-base md:text-lg mb-6 max-w-xl text-center">
+                Discover our collection of premium quality t-shirts featuring stunning designs that help you stand out from the crowd.
+              </p>
+            </div>
+          </div>
+          <div className="mt-8 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+              Essential Blanks
+            </h2>
+            <p className="text-lg text-gray-600">
+              We've Perfected the Oversized T-Shirt – Effortless Fit, Ultimate Comfort.
+            </p>
+          </div>
+        </section>
 
-    {/* المحتوى في المنتصف */}
-    <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
-      <div className="mb-6 px-4 py-1 bg-white bg-opacity-20 text-white border border-white border-opacity-30 rounded-full text-sm font-medium backdrop-blur-sm">
-        Premium T-Shirt Designs
-      </div>
-
-      <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight text-center">
-        Express Your
-        <br />
-        <span className="block bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
-          Unique Style
-        </span>
-      </h2>
-
-      <p className="text-base md:text-lg mb-6 max-w-xl text-center">
-        Discover our collection of premium quality t-shirts featuring stunning designs that help you stand out from the crowd.
-      </p>
-    </div>
-  </div>
-
-  {/* العنوان الإضافي تحت الصورة (في container عادي) */}
-  <div className="mt-8 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
-      Essential Blanks
-    </h2>
-    <p className="text-lg text-gray-600">
-      We've Perfected the Oversized T-Shirt – Effortless Fit, Ultimate Comfort.
-    </p>
-  </div>
-</section>
-
-        {/* Designs Grid - 2 per row on mobile */}
-        <section className="px-4 sm:px-6 lg:px-8 pb-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        {/* Designs Grid - 4 per row on desktop */}
+        <section className="px-4 sm:px-6 lg:px-8 pb-16 mt-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Bestsellers</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {designs.map((design) => {
               const discountedPrice = calculateDiscountedPrice(design.originalPrice, design.discount);
               return (
                 <div
                   key={design.id}
-                  className="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer"
+                  className="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border border-gray-100"
                   onClick={() => viewDesign(design)}
                 >
-                  <img
-                    src={design.images[0]}
-                    alt={design.name}
-                    className="w-full h-64 object-cover"
-                  />
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">
-                      {design.name}
-                    </h3>
-                    <div className="flex items-center justify-between mb-3">
-                      <StarRating rating={design.rating} />
-                      <span className="text-sm text-gray-500">{design.views} views</span>
+                  <div className="relative">
+                    <img
+                      src={design.images[0]}
+                      alt={design.name}
+                      className="w-full h-48 object-cover"
+                    />
+                    {design.isBestseller && (
+                      <div className="absolute top-2 left-2 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded">
+                        Bestseller
+                      </div>
+                    )}
+                    {design.isDigitalService && (
+                      <div className="absolute top-2 left-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
+                        Service
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-4">
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="text-sm font-medium text-gray-900 line-clamp-2">
+                        {design.name}
+                      </h3>
                     </div>
-                    <div className="flex items-center space-x-2 mb-4">
-                      <span className="text-2xl font-bold text-green-600">
-                        ${discountedPrice.toFixed(2)}
-                      </span>
-                      <span className="text-lg text-gray-500 line-through">
-                        ${design.originalPrice}
-                      </span>
+                    
+                    <div className="flex items-center mb-2">
+                      <StarRating rating={design.rating} size="sm" />
+                      <span className="text-xs text-gray-500 ml-1">({design.reviewsCount})</span>
+                    </div>
+                    
+                    <CompatibilityIcons compatibility={design.compatibility} />
+                    
+                    <div className="flex items-center justify-between mt-3">
+                      <div className="flex items-center space-x-2">
+                        <span className="text-lg font-bold text-gray-900">
+                          ${discountedPrice.toFixed(2)}
+                        </span>
+                        <span className="text-sm text-gray-500 line-through">
+                          ${design.originalPrice.toFixed(2)}
+                        </span>
+                      </div>
                       <span className="bg-red-100 text-red-800 text-xs font-semibold px-2 py-1 rounded">
                         {design.discount}% OFF
                       </span>
                     </div>
+                    
+                    <div className="mt-3 text-xs text-gray-500">
+                      Digital download
+                    </div>
+                    
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         viewDesign(design);
                       }}
-                      className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                      className="w-full mt-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition-colors text-sm"
                     >
                       View Details
                     </button>
@@ -415,27 +462,49 @@ export default function App() {
 
             {/* Product Info */}
             <div>
+              <div className="flex items-center mb-2">
+                {selectedDesign.isBestseller && (
+                  <span className="bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded mr-2">
+                    Bestseller
+                  </span>
+                )}
+                {selectedDesign.isDigitalService && (
+                  <span className="bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
+                    Service
+                  </span>
+                )}
+              </div>
+              
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
                 {selectedDesign.name}
               </h2>
+              
               <div className="flex items-center space-x-4 mb-6">
                 <StarRating rating={selectedDesign.rating} />
-                <span className="text-gray-600">{selectedDesign.views} views</span>
+                <span className="text-gray-600">{selectedDesign.reviewsCount} reviews</span>
               </div>
+              
               <div className="flex items-center space-x-3 mb-6">
                 <span className="text-3xl font-bold text-green-600">
                   ${discountedPrice.toFixed(2)}
                 </span>
                 <span className="text-xl text-gray-500 line-through">
-                  ${selectedDesign.originalPrice}
+                  ${selectedDesign.originalPrice.toFixed(2)}
                 </span>
                 <span className="bg-red-100 text-red-800 text-sm font-semibold px-3 py-1 rounded">
                   {selectedDesign.discount}% OFF
                 </span>
               </div>
+              
+              <div className="mb-4">
+                <span className="text-sm text-gray-500">Digital download</span>
+                <CompatibilityIcons compatibility={selectedDesign.compatibility} />
+              </div>
+              
               <p className="text-gray-700 text-lg leading-relaxed mb-8">
                 {selectedDesign.description}
               </p>
+              
               <h3 className="text-xl font-bold text-gray-900 mb-4">Features:</h3>
               <ul className="space-y-2 mb-8">
                 {selectedDesign.features.map((f, i) => (
@@ -447,6 +516,7 @@ export default function App() {
                   </li>
                 ))}
               </ul>
+              
               <a
                 href={selectedDesign.buyLink?.trim()}
                 target="_blank"
@@ -571,7 +641,7 @@ export default function App() {
             </a>
             <a href="https://www.pinterest.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-500 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.401-5.957 1.401-5.957s-.357-.714-.357-1.77c0-1.662.962-2.899 2.16-2.899 1.034 0 1.588.782 1.588 1.707 0 1.034-.659 2.574-.998 4.002-.281 1.193.593 2.16 1.775 2.16 2.127 0 3.768-2.246 3.768-5.485 0-2.861-2.063-4.877-5.008-4.877-3.48 0-5.595 2.662-5.595 5.222 0 1.068.417 2.183 1.061 2.748.093.084.114.144.077.24-.09.24-.566 1.259-.64 1.446-.02.05-.084.07-.128.027-1.1-1.026-1.775-2.41-1.775-4.146 0-3.188 2.472-6.097 6.911-6.097 3.758 0 6.669 2.656 6.669 6.05 0 3.82-2.293 6.377-5.115 6.377-1.018 0-1.963-.524-2.291-1.184l-.629 2.376c-.232.87-.861 1.997-1.264 2.684.92.283 1.897.436 2.897.436 6.627 0 11.962-5.336 11.962-11.963C24 5.373 18.627 0 12 0z"/>
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.401-5.957 1.401-5.957s-.357-.714-.357-1.77c0-1.662.962-2.899 2.16-2.899 1.034 0 1.588.782 1.588 1.707 0 1.034-.659 2.574-.998 4.002-.281 1.193.593 2.16 1.775 2.16 2.127 0 3.768-2.246 3.768-5.485 0-2.861-2.063-4.877-5.008-4.877-3.48 0-5.595 2.662-5.595 5.222 0 1.068.417 2.183 1.061 2.748.093.084.114.144.077.24-.09.24-.566 1.259-.64 1.446-.02.05-.084.07-.128.027-1.1-1.026-1.775-2.41-1.775-4.146 0-3.188 2.472-6.097 6.911-6.097 3.758 0 6.669 2.656 6.669 6.05 0 3.82-2.293 6.377-5.115 6.377-1.018 0-1.963-.524-2.291-1.184l-.629 2.376c-.232.870-.861 1.997-1.264 2.684.92.283 1.897.436 2.897.436 6.627 0 11.962-5.336 11.962-11.963C24 5.373 18.627 0 12 0z"/>
               </svg>
             </a>
           </div>
@@ -603,4 +673,4 @@ export default function App() {
   );
 
   return currentView === "home" ? <HomeScreen /> : <DetailScreen />;
-                    }
+      }
