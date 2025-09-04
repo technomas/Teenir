@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
 export default function App() {
   const [currentView, setCurrentView] = useState("home");
@@ -6,7 +10,7 @@ export default function App() {
   const [email, setEmail] = useState("");
   const [activeReviewIndex, setActiveReviewIndex] = useState(0);
 
-  // بيانات التصاميم - تم إضافة منتجين جديدين (أصبح 4)
+  // بيانات التصاميم (4 منتجات)
   const designs = [
     {
       id: 1,
@@ -290,20 +294,8 @@ export default function App() {
 
   // صفحة التفاصيل
   const DetailScreen = () => {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [selectedImage, setSelectedImage] = useState(0); // لربط Swiper مع-thumbnails
     const [reviewIndex, setReviewIndex] = useState(0);
-
-    const handlePrevImage = () => {
-      setCurrentImageIndex(
-        (prev) => (prev === 0 ? selectedDesign.images.length - 1 : prev - 1)
-      );
-    };
-
-    const handleNextImage = () => {
-      setCurrentImageIndex(
-        (prev) => (prev === selectedDesign.images.length - 1 ? 0 : prev + 1)
-      );
-    };
 
     const handlePrevReview = () => {
       setReviewIndex(
@@ -348,38 +340,43 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Image Gallery */}
             <div className="flex flex-col items-center">
-              <div className="relative w-full max-w-md">
-                <img
-                  src={selectedDesign.images[currentImageIndex]}
-                  alt={`Image ${currentImageIndex + 1}`}
-                  className="w-full max-h-[500px] object-cover rounded-xl shadow-lg"
-                />
-                <button
-                  onClick={handlePrevImage}
-                  className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white text-gray-500 hover:bg-gray-100 rounded-full p-2 shadow-md"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </button>
-                <button
-                  onClick={handleNextImage}
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white text-gray-500 hover:bg-gray-100 rounded-full p-2 shadow-md"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                  </svg>
-                </button>
-              </div>
-              <div className="flex space-x-2 mt-4">
-                {selectedDesign.images.map((_, idx) => (
+              {/* Swiper الصور الرئيسية */}
+              <Swiper
+                pagination={{ clickable: true }}
+                modules={[Pagination]}
+                className="h-96 w-full max-w-md rounded-xl shadow-lg overflow-hidden mb-4"
+                onSlideChange={(swiper) => setSelectedImage(swiper.activeIndex)}
+                initialSlide={selectedImage}
+              >
+                {selectedDesign.images.map((image, index) => (
+                  <SwiperSlide key={index}>
+                    <img
+                      src={image}
+                      alt={`${selectedDesign.name} - ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
+              {/* مؤشرات الصور المصغّرة (Thumbnails) */}
+              <div className="flex gap-2 justify-center flex-wrap max-w-md">
+                {selectedDesign.images.map((image, index) => (
                   <button
-                    key={idx}
-                    onClick={() => setCurrentImageIndex(idx)}
-                    className={`w-3 h-3 rounded-full ${
-                      idx === currentImageIndex ? "bg-indigo-600" : "bg-gray-300"
+                    key={index}
+                    onClick={() => setSelectedImage(index)}
+                    className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                      index === selectedImage
+                        ? 'border-indigo-600 scale-105'
+                        : 'border-gray-200 hover:border-gray-300'
                     }`}
-                  ></button>
+                  >
+                    <img
+                      src={image}
+                      alt={`Thumbnail ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
                 ))}
               </div>
             </div>
@@ -528,7 +525,6 @@ export default function App() {
 
         {/* Social & Payments */}
         <div>
-          {/* Follow Us */}
           <h2 className="text-2xl font-bold mb-4">FOLLOW US</h2>
           <div className="flex space-x-4 mb-6">
             <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-pink-500 transition-colors">
@@ -548,7 +544,6 @@ export default function App() {
             </a>
           </div>
 
-          {/* Payment Methods */}
           <div>
             <h2 className="text-2xl font-bold mb-4 text-red-500">PAYMENTS</h2>
             <div className="flex flex-row gap-4 justify-center md:justify-start">
@@ -569,7 +564,6 @@ export default function App() {
         </div>
       </div>
 
-      {/* Copyright */}
       <div className="mt-12 pt-6 border-t border-gray-800 text-center text-gray-400 text-sm">
         &copy; {new Date().getFullYear()} TeeNira. All rights reserved.
       </div>
@@ -577,4 +571,4 @@ export default function App() {
   );
 
   return currentView === "home" ? <HomeScreen /> : <DetailScreen />;
-        }
+                      }
