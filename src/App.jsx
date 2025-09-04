@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
@@ -10,7 +10,7 @@ export default function App() {
   const [email, setEmail] = useState("");
   const [activeReviewIndex, setActiveReviewIndex] = useState(0);
 
-  // بيانات التصاميم (4 منتجات)
+  // بيانات التصاميم (4 منتجات) - تمت إزالة المسافات الزائدة في الروابط
   const designs = [
     {
       id: 1,
@@ -294,8 +294,9 @@ export default function App() {
 
   // صفحة التفاصيل
   const DetailScreen = () => {
-    const [selectedImage, setSelectedImage] = useState(0); // لربط Swiper مع-thumbnails
+    const [selectedImage, setSelectedImage] = useState(0);
     const [reviewIndex, setReviewIndex] = useState(0);
+    const swiperRef = useRef(null); // ← لربط Swiper
 
     const handlePrevReview = () => {
       setReviewIndex(
@@ -345,13 +346,18 @@ export default function App() {
                 pagination={{ clickable: true }}
                 modules={[Pagination]}
                 className="h-96 w-full max-w-md rounded-xl shadow-lg overflow-hidden mb-4"
-                onSlideChange={(swiper) => setSelectedImage(swiper.activeIndex)}
+                onSwiper={(swiper) => {
+                  swiperRef.current = swiper;
+                }}
+                onSlideChange={(swiper) => {
+                  setSelectedImage(swiper.activeIndex);
+                }}
                 initialSlide={selectedImage}
               >
                 {selectedDesign.images.map((image, index) => (
                   <SwiperSlide key={index}>
                     <img
-                      src={image}
+                      src={image.trim()}
                       alt={`${selectedDesign.name} - ${index + 1}`}
                       className="w-full h-full object-cover"
                     />
@@ -364,7 +370,12 @@ export default function App() {
                 {selectedDesign.images.map((image, index) => (
                   <button
                     key={index}
-                    onClick={() => setSelectedImage(index)}
+                    onClick={() => {
+                      setSelectedImage(index);
+                      if (swiperRef.current) {
+                        swiperRef.current.slideTo(index);
+                      }
+                    }}
                     className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
                       index === selectedImage
                         ? 'border-indigo-600 scale-105'
@@ -372,7 +383,7 @@ export default function App() {
                     }`}
                   >
                     <img
-                      src={image}
+                      src={image.trim()}
                       alt={`Thumbnail ${index + 1}`}
                       className="w-full h-full object-cover"
                     />
@@ -416,7 +427,7 @@ export default function App() {
                 ))}
               </ul>
               <a
-                href={selectedDesign.buyLink}
+                href={selectedDesign.buyLink?.trim()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-xl text-lg text-center transition-colors shadow-md"
