@@ -192,7 +192,7 @@ export default function App() {
             alt="Hero Banner"
             className="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg mx-auto mb-6"
           />
-          <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
+          <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 z-10">
           <Badge className="mb-6 bg-accent/20 text-accent border-accent/30">
             Premium T-Shirt Designs
           </Badge>
