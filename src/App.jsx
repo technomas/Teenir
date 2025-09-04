@@ -192,6 +192,20 @@ export default function App() {
             alt="Hero Banner"
             className="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg mx-auto mb-6"
           />
+          <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4">
+          <Badge className="mb-6 bg-accent/20 text-accent border-accent/30">
+            Premium T-Shirt Designs
+          </Badge>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
+            Express Your
+            <span className="block bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              Unique Style
+            </span>
+          </h2>
+          <p className="text-lg md:text-xl mb-8 text-gray-200 max-w-2xl mx-auto">
+            Discover our collection of premium quality t-shirts featuring stunning designs that help you stand out from the crowd.
+          </p>
+         </div>
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
             Essential Blanks
           </h2>
