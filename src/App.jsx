@@ -186,10 +186,10 @@ export default function App() {
         </header>
 
         {/* Hero Banner */}
-        <section className="relative h-[60vh] md:h-[70vh] max-h-[600px] flex items-center justify-center overflow-hidden">
-        <img
+        <section className="py-16 px-4 sm:px-6 lg:px-8 text-center">
+          <img
             src="/images/herobanner.jpg"
-          alt="Hero Banner"
+            alt="Hero Banner"
             className="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg mx-auto mb-6"
           />
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
@@ -582,4 +582,4 @@ export default function App() {
   );
 
   return currentView === "home" ? <HomeScreen /> : <DetailScreen />;
-                      }
+              }
