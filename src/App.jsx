@@ -245,7 +245,7 @@ export default function App() {
         {/* Designs Grid - 4 per row on desktop */}
         <section className="px-4 sm:px-6 lg:px-8 pb-16 mt-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Bestsellers</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
             {designs.map((design) => {
               const discountedPrice = calculateDiscountedPrice(design.originalPrice, design.discount);
               return (
