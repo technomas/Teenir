@@ -185,24 +185,23 @@ export default function App() {
           </div>
         </header>
 
-        {/* Hero Banner */}
-<section className="py-16 px-4 sm:px-6 lg:px-8 text-center relative">
-  {/* الصورة كخلفية */}
+        {/* Hero Banner - Full Width */}
+<section className="relative py-16 -mx-4 sm:-mx-6 lg:-mx-8 overflow-hidden">
+  {/* الخلفية الكاملة */}
   <div
-    className="relative w-full h-64 md:h-80 bg-cover bg-center rounded-xl shadow-lg mx-auto"
+    className="relative w-full h-64 md:h-80 bg-cover bg-center rounded-none shadow-lg"
     style={{ backgroundImage: "url('/images/herobanner.jpg')" }}
   >
-    {/* Overlay شفاف لتحسين قراءة النص */}
-    <div className="absolute inset-0 bg-black bg-opacity-40 rounded-xl"></div>
+    {/* Overlay شفاف */}
+    <div className="absolute inset-0 bg-black bg-opacity-40 rounded-none"></div>
 
-    {/* المحتوى في منتصف الصورة */}
+    {/* المحتوى في المنتصف */}
     <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
-      {/* شارة (Badge) - تم استبدال Badge بـ div */}
       <div className="mb-6 px-4 py-1 bg-white bg-opacity-20 text-white border border-white border-opacity-30 rounded-full text-sm font-medium backdrop-blur-sm">
         Premium T-Shirt Designs
       </div>
 
-      <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+      <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight text-center">
         Express Your
         <br />
         <span className="block bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
@@ -210,19 +209,14 @@ export default function App() {
         </span>
       </h2>
 
-      <p className="text-base md:text-lg mb-6 max-w-xl">
+      <p className="text-base md:text-lg mb-6 max-w-xl text-center">
         Discover our collection of premium quality t-shirts featuring stunning designs that help you stand out from the crowd.
       </p>
-
-      {/* يمكن إضافة زر إذا أردت */}
-      {/* <button className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-6 rounded-lg transition">
-        Shop Now
-      </button> */}
     </div>
   </div>
 
-  {/* العنوان الإضافي تحت الصورة (اختياري) */}
-  <div className="mt-12 max-w-3xl mx-auto text-center">
+  {/* العنوان الإضافي تحت الصورة (في container عادي) */}
+  <div className="mt-12 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
     <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
       Essential Blanks
     </h2>
@@ -614,4 +608,4 @@ export default function App() {
   );
 
   return currentView === "home" ? <HomeScreen /> : <DetailScreen />;
-              }
+        }
