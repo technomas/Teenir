@@ -186,33 +186,51 @@ export default function App() {
         </header>
 
         {/* Hero Banner */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 text-center">
-          <img
-            src="/images/herobanner.jpg"
-            alt="Hero Banner"
-            className="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg mx-auto mb-6"
-          />
-          <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 z-10">
-          <Badge className="mb-6 bg-accent/20 text-accent border-accent/30">
-            Premium T-Shirt Designs
-          </Badge>
-          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
-            Express Your
-            <span className="block bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Unique Style
-            </span>
-          </h2>
-          <p className="text-lg md:text-xl mb-8 text-gray-200 max-w-2xl mx-auto">
-            Discover our collection of premium quality t-shirts featuring stunning designs that help you stand out from the crowd.
-          </p>
-         </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
-            Essential Blanks
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
-            We've Perfected the Oversized T-Shirt – Effortless Fit, Ultimate Comfort.
-          </p>
-        </section>
+<section className="py-16 px-4 sm:px-6 lg:px-8 text-center relative">
+  {/* الصورة كخلفية */}
+  <div
+    className="relative w-full h-64 md:h-80 bg-cover bg-center rounded-xl shadow-lg mx-auto"
+    style={{ backgroundImage: "url('/images/herobanner.jpg')" }}
+  >
+    {/* Overlay شفاف لتحسين قراءة النص */}
+    <div className="absolute inset-0 bg-black bg-opacity-40 rounded-xl"></div>
+
+    {/* المحتوى في منتصف الصورة */}
+    <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
+      {/* شارة (Badge) - تم استبدال Badge بـ div */}
+      <div className="mb-6 px-4 py-1 bg-white bg-opacity-20 text-white border border-white border-opacity-30 rounded-full text-sm font-medium backdrop-blur-sm">
+        Premium T-Shirt Designs
+      </div>
+
+      <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
+        Express Your
+        <br />
+        <span className="block bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
+          Unique Style
+        </span>
+      </h2>
+
+      <p className="text-base md:text-lg mb-6 max-w-xl">
+        Discover our collection of premium quality t-shirts featuring stunning designs that help you stand out from the crowd.
+      </p>
+
+      {/* يمكن إضافة زر إذا أردت */}
+      {/* <button className="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-6 rounded-lg transition">
+        Shop Now
+      </button> */}
+    </div>
+  </div>
+
+  {/* العنوان الإضافي تحت الصورة (اختياري) */}
+  <div className="mt-12 max-w-3xl mx-auto text-center">
+    <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+      Essential Blanks
+    </h2>
+    <p className="text-lg text-gray-600">
+      We've Perfected the Oversized T-Shirt – Effortless Fit, Ultimate Comfort.
+    </p>
+  </div>
+</section>
 
         {/* Designs Grid */}
         <section className="px-4 sm:px-6 lg:px-8 pb-16">
