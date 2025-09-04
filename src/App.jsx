@@ -186,7 +186,7 @@ export default function App() {
         </header>
 
         {/* Hero Banner - Full Width */}
-<section className="relative py-16 -mx-4 sm:-mx-6 lg:-mx-8 overflow-hidden">
+<section className="relative mt-16 py-16 -mx-4 sm:-mx-6 lg:-mx-8 overflow-hidden">
   {/* الخلفية الكاملة */}
   <div
     className="relative w-full h-64 md:h-80 bg-cover bg-center rounded-none shadow-lg"
