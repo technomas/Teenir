@@ -8,146 +8,119 @@ export default function App() {
   const [currentView, setCurrentView] = useState("home");
   const [selectedDesign, setSelectedDesign] = useState(null);
   const [email, setEmail] = useState("");
+  const [activeReviewIndex, setActiveReviewIndex] = useState(0);
 
-  // يجب تعريف allReviews و totalReviews قبل أي استخدام
+  // بيانات التصاميم (4 منتجات)
   const designs = [
     {
       id: 1,
-      name: "Hangin' With My Boos Shirt, Cute Pumpkin Bat...",
+      name: "Galaxy Warrior",
       images: [
-        "https://placehold.co/400x600/ff7f00/ffffff?text=Halloween+Shirt",
+        "https://placehold.co/400x600/1a1a2e/ffffff?text=Galaxy+1",
+        "https://placehold.co/400x600/2d2d44/ffffff?text=Galaxy+2",
+        "https://placehold.co/400x600/3e3e5a/ffffff?text=Galaxy+3",
+        "https://placehold.co/400x600/505070/ffffff?text=Galaxy+4",
+        "https://placehold.co/400x600/626286/ffffff?text=Galaxy+5",
       ],
-      buyLink: "https://paypal.me/yourname/halloween",
-      originalPrice: 18.99,
+      buyLink: "https://paypal.me/yourname/cyberpunk",
+      originalPrice: 6,
       discount: 50,
       rating: 4.8,
-      reviewsCount: 55700,
-      description: "Cute Halloween shirt with ghosts and pumpkins.",
-      features: ["High-resolution PNG", "Instant download", "Commercial use"],
-      compatibility: ["Ai", "Ps", "Id"],
-      tags: ["Halloween", "Pumpkin", "Ghosts"],
-      isBestseller: true,
-      seller: "Etsy seller",
-      shipping: "Free shipping",
+      views: 1250,
+      description: "A powerful warrior standing in the middle of a cosmic galaxy, ready to defend the universe.",
+      features: [
+        "Premium cotton fabric",
+        "Soft and breathable material",
+        "Unisex fit",
+        "High-definition print",
+      ],
       reviews: [
-        { rating: 5, comment: "Perfect for Halloween!", author: "Linda M." },
+        { rating: 5, comment: "Absolutely stunning design!", author: "John Doe" },
+        { rating: 4, comment: "Great shirt, perfect fit.", author: "Jane Smith" },
       ],
     },
     {
       id: 2,
-      name: "Basketball Png, Basketball Mom Png",
+      name: "Neon Cyberpunk",
       images: [
-        "https://placehold.co/400x600/ffffff/000000?text=Basketball+Mom",
+        "https://placehold.co/400x600/0f3460/ffffff?text=Cyber+1",
+        "https://placehold.co/400x600/1a4877/ffffff?text=Cyber+2",
+        "https://placehold.co/400x600/265d8e/ffffff?text=Cyber+3",
+        "https://placehold.co/400x600/3171a5/ffffff?text=Cyber+4",
+        "https://placehold.co/400x600/3c85bc/ffffff?text=Cyber+5",
       ],
-      buyLink: "https://paypal.me/yourname/basketball",
-      originalPrice: 4.51,
+      buyLink: "https://printly.com/",
+      originalPrice: 6,
       discount: 50,
-      rating: 5.0,
-      reviewsCount: 510,
-      description: "Basketball Mom PNG and SVG files perfect for shirts, mugs, and more.",
-      features: ["High-resolution PNG", "SVG file", "Instant download"],
-      compatibility: ["Ai", "Ps", "Id"],
-      tags: ["Basketball", "Sports", "Mom"],
-      isBestseller: true,
-      seller: "Etsy seller",
-      shipping: "Free shipping",
+      rating: 4.9,
+      views: 2100,
+      description: "Futuristic city lights reflecting on a lone rider with glowing tech armor.",
+      features: [
+        "Eco-friendly ink printing",
+        "Durable for daily wear",
+        "Slight stretch for comfort",
+        "Resistant to fading",
+      ],
       reviews: [
-        { rating: 5, comment: "Perfect for my basketball team shirts!", author: "Sarah J." },
+        { rating: 5, comment: "Looks amazing! Perfect for any fan.", author: "Alex T." },
+        { rating: 5, comment: "Everyone asks where I got it!", author: "Sarah L." },
       ],
     },
     {
       id: 3,
-      name: "300+ Premium T-shirt Designs Bundle",
+      name: "Mountain Echo",
       images: [
-        "https://placehold.co/400x600/000000/ffffff?text=300+T-Shirts",
+        "https://placehold.co/400x600/1f4037/ffffff?text=Mountain+1",
+        "https://placehold.co/400x600/2d6a4f/ffffff?text=Mountain+2",
+        "https://placehold.co/400x600/3d8b6b/ffffff?text=Mountain+3",
+        "https://placehold.co/400x600/4db68c/ffffff?text=Mountain+4",
+        "https://placehold.co/400x600/66c2a5/ffffff?text=Mountain+5",
       ],
-      buyLink: "https://paypal.me/yourname/bundle",
-      originalPrice: 4.54,
-      discount: 60,
-      rating: 4.5,
-      reviewsCount: 13,
-      description: "Bundle of 300+ premium t-shirt designs in SVG and PNG formats.",
-      features: ["300+ designs", "SVG & PNG", "Commercial use"],
-      compatibility: ["Ai", "Ps", "Id"],
-      tags: ["Bundle", "SVG", "PNG"],
-      isBestseller: true,
-      seller: "GraphicSouk",
-      shipping: "Free shipping",
+      buyLink: "https://printly.com/",
+      originalPrice: 5.8,
+      discount: 40,
+      rating: 4.7,
+      views: 980,
+      description: "Serene mountain peaks under a golden sunrise, symbolizing peace and adventure.",
+      features: [
+        "Organic cotton blend",
+        "Lightweight and soft",
+        "Unisex oversized cut",
+        "Eco-friendly dyes",
+      ],
       reviews: [
-        { rating: 5, comment: "Great value for the price!", author: "Mike R." },
+        { rating: 5, comment: "Perfect for hiking trips!", author: "Mark R." },
+        { rating: 4, comment: "Love the calm vibe of the design.", author: "Lena K." },
       ],
     },
     {
       id: 4,
-      name: "Custom T-Shirt Design Service",
+      name: "Quantum Flux",
       images: [
-        "https://placehold.co/400x600/000000/ffffff?text=Custom+Designer",
+        "https://placehold.co/400x600/0c0c2e/ffffff?text=Quantum+1",
+        "https://placehold.co/400x600/1a1a4a/ffffff?text=Quantum+2",
+        "https://placehold.co/400x600/282866/ffffff?text=Quantum+3",
+        "https://placehold.co/400x600/363682/ffffff?text=Quantum+4",
+        "https://placehold.co/400x600/44449e/ffffff?text=Quantum+5",
       ],
-      buyLink: "https://printly.com/",
-      originalPrice: 24.97,
-      discount: 60,
-      rating: 4.8,
-      reviewsCount: 126,
-      description: "Professional custom t-shirt design service for your business or event.",
-      features: ["Custom design", "Unlimited revisions", "Fast turnaround"],
-      compatibility: ["Ai", "Ps", "Id", "Service"],
-      tags: ["Custom", "Design", "Service"],
-      isBestseller: true,
-      seller: "CraftsinDigital",
-      shipping: "Free shipping",
+      buyLink: "https://paypal.me/yourname/quantum",
+      originalPrice: 6.5,
+      discount: 55,
+      rating: 4.9,
+      views: 1870,
+      description: "Abstract representation of quantum energy waves and particles in motion.",
+      features: [
+        "Anti-shrink technology",
+        "Double-stitched seams",
+        "Vibrant color retention",
+        "Breathable microfiber",
+      ],
       reviews: [
-        { rating: 5, comment: "Amazing design service! Will order again.", author: "Jessica L." },
+        { rating: 5, comment: "Science lover's dream!", author: "Dr. Evans" },
+        { rating: 5, comment: "So many compliments on this one.", author: "Tina M." },
       ],
     },
-    {
-      id: 5,
-      name: "Daffy Duck Streetwear Design",
-      images: [
-        "https://placehold.co/400x600/000000/ffffff?text=Daffy+Duck",
-      ],
-      buyLink: "https://paypal.me/yourname/daffy",
-      originalPrice: 9.99,
-      discount: 40,
-      rating: 4.7,
-      reviewsCount: 89,
-      description: "Daffy Duck streetwear design with vibrant colors and urban style.",
-      features: ["High-quality print", "Streetwear style", "Commercial use"],
-      compatibility: ["Ai", "Ps", "Id"],
-      tags: ["Daffy", "Cartoon", "Streetwear"],
-      isBestseller: true,
-      seller: "GraphicSouk",
-      shipping: "Free shipping",
-      reviews: [
-        { rating: 5, comment: "My son loves this design!", author: "Emily R." },
-      ],
-    },
-    {
-      id: 6,
-      name: "Heroes Digital Pack",
-      images: [
-        "https://placehold.co/400x600/ffffff/000000?text=Heroes+Pack",
-      ],
-      buyLink: "https://paypal.me/yourname/heroes",
-      originalPrice: 6.99,
-      discount: 40,
-      rating: 4.7,
-      reviewsCount: 152,
-      description: "Heroes-themed digital files for various applications.",
-      features: ["Multiple hero designs", "SVG and PNG", "Commercial use"],
-      compatibility: ["Ai", "Ps", "Id"],
-      tags: ["Heroes", "Digital", "Comics"],
-      isBestseller: true,
-      seller: "CraftsinDigital",
-      shipping: "Free shipping",
-      reviews: [
-        { rating: 5, comment: "Great for my comic-themed products!", author: "Alex T." },
-      ],
-    }
   ];
-
-  // ✅ تم نقل هذه التعريفات قبل أي استخدام
-  const allReviews = designs.flatMap(d => d.reviews);
-  const totalReviews = allReviews.length;
 
   const calculateDiscountedPrice = (price, discount) => {
     return price * (1 - discount / 100);
@@ -163,12 +136,8 @@ export default function App() {
     setCurrentView("detail");
   };
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [currentView, selectedDesign]);
-
   // نجمة التقييم
-  const StarRating = ({ rating, showNumber = false }) => (
+  const StarRating = ({ rating }) => (
     <div className="flex items-center space-x-1">
       {[...Array(5)].map((_, i) => (
         <svg
@@ -181,29 +150,363 @@ export default function App() {
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-.18-1.81.588-1.81l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
         </svg>
       ))}
-      {showNumber && <span className="ml-1 text-sm text-gray-600">{rating.toFixed(1)}</span>}
+      <span className="ml-1 text-sm text-gray-600">{rating}</span>
     </div>
   );
 
-  // أيقونات التوافق
-  const CompatibilityIcons = ({ compatibility }) => (
-    <div className="flex items-center space-x-2 mt-1">
-      {compatibility.includes("Ai") && (
-        <span className="bg-gray-100 text-gray-800 text-xs font-medium px-1 py-0.5 rounded">Ai</span>
-      )}
-      {compatibility.includes("Ps") && (
-        <span className="bg-gray-100 text-gray-800 text-xs font-medium px-1 py-0.5 rounded">Ps</span>
-      )}
-      {compatibility.includes("Id") && (
-        <span className="bg-gray-100 text-gray-800 text-xs font-medium px-1 py-0.5 rounded">Id</span>
-      )}
-      {compatibility.includes("Service") && (
-        <span className="bg-blue-100 text-blue-800 text-xs font-medium px-1 py-0.5 rounded">Service</span>
-      )}
-    </div>
-  );
+  // جمع جميع التقييمات
+  const allReviews = designs.flatMap(d => d.reviews);
+  const totalReviews = allReviews.length;
 
-  // ✅ تعريف Footer قبل استخدامه
+  // التمرير التلقائي بين التقييمات
+  useEffect(() => {
+    if (totalReviews <= 1) return;
+    const interval = setInterval(() => {
+      setActiveReviewIndex(prev => (prev === totalReviews - 1 ? 0 : prev + 1));
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [totalReviews]);
+
+  // الصفحة الرئيسية
+  const HomeScreen = () => {
+    const currentReview = allReviews[activeReviewIndex];
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+        {/* Header */}
+        <header className="bg-white shadow-sm sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-center items-center">
+            <h1
+              onClick={goToHome}
+              className="text-3xl md:text-4xl font-extrabold text-indigo-700 cursor-pointer hover:text-indigo-900 transition-colors tracking-wide"
+              style={{ fontFamily: "'Poppins', sans-serif" }}
+            >
+              TeeNira
+            </h1>
+          </div>
+        </header>
+
+        {/* Hero Banner - Full Width + No Top Margin */}
+<section className="relative py-8 -mx-4 sm:-mx-6 lg:-mx-8 overflow-hidden">
+  {/* الخلفية الكاملة */}
+  <div
+    className="relative w-full h-64 md:h-80 bg-cover bg-center rounded-none shadow-lg"
+    style={{ backgroundImage: "url('/images/herobanner.jpg')" }}
+  >
+    {/* Overlay شفاف */}
+    <div className="absolute inset-0 bg-black bg-opacity-40 rounded-none"></div>
+
+    {/* المحتوى في المنتصف */}
+    <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
+      <div className="mb-6 px-4 py-1 bg-white bg-opacity-20 text-white border border-white border-opacity-30 rounded-full text-sm font-medium backdrop-blur-sm">
+        Premium T-Shirt Designs
+      </div>
+
+      <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight text-center">
+        Express Your
+        <br />
+        <span className="block bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
+          Unique Style
+        </span>
+      </h2>
+
+      <p className="text-base md:text-lg mb-6 max-w-xl text-center">
+        Discover our collection of premium quality t-shirts featuring stunning designs that help you stand out from the crowd.
+      </p>
+    </div>
+  </div>
+
+  {/* العنوان الإضافي تحت الصورة (في container عادي) */}
+  <div className="mt-8 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+      Essential Blanks
+    </h2>
+    <p className="text-lg text-gray-600">
+      We've Perfected the Oversized T-Shirt – Effortless Fit, Ultimate Comfort.
+    </p>
+  </div>
+</section>
+
+        {/* Designs Grid - 2 per row on mobile */}
+        <section className="px-4 sm:px-6 lg:px-8 pb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {designs.map((design) => {
+              const discountedPrice = calculateDiscountedPrice(design.originalPrice, design.discount);
+              return (
+                <div
+                  key={design.id}
+                  className="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer"
+                  onClick={() => viewDesign(design)}
+                >
+                  <img
+                    src={design.images[0]}
+                    alt={design.name}
+                    className="w-full h-64 object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">
+                      {design.name}
+                    </h3>
+                    <div className="flex items-center justify-between mb-3">
+                      <StarRating rating={design.rating} />
+                      <span className="text-sm text-gray-500">{design.views} views</span>
+                    </div>
+                    <div className="flex items-center space-x-2 mb-4">
+                      <span className="text-2xl font-bold text-green-600">
+                        ${discountedPrice.toFixed(2)}
+                      </span>
+                      <span className="text-lg text-gray-500 line-through">
+                        ${design.originalPrice}
+                      </span>
+                      <span className="bg-red-100 text-red-800 text-xs font-semibold px-2 py-1 rounded">
+                        {design.discount}% OFF
+                      </span>
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        viewDesign(design);
+                      }}
+                      className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                    >
+                      View Details
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Customer Reviews */}
+        <section className="mt-16 px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">
+            Let customers speak for us
+          </h2>
+          <div className="flex justify-center mb-4">
+            <StarRating rating={4.8} />
+            <span className="text-gray-600 ml-2">
+              from {totalReviews} reviews
+            </span>
+          </div>
+
+          <div className="relative max-w-md mx-auto">
+            <div className="bg-blue-50 p-6 rounded-lg shadow-md border border-blue-100 text-center transition-opacity duration-500">
+              <div className="flex justify-center items-center mb-3">
+                <StarRating rating={currentReview.rating} />
+                <span className="font-semibold ml-2">{currentReview.author}</span>
+              </div>
+              <p className="text-gray-700 italic">"{currentReview.comment}"</p>
+            </div>
+
+            {/* Indicators */}
+            <div className="flex justify-center mt-4 space-x-2">
+              {allReviews.map((_, idx) => (
+                <div
+                  key={idx}
+                  className={`w-2 h-2 rounded-full ${
+                    idx === activeReviewIndex ? "bg-indigo-600" : "bg-gray-300"
+                  }`}
+                ></div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <Footer />
+      </div>
+    );
+  };
+
+  // صفحة التفاصيل
+  const DetailScreen = () => {
+    const [selectedImage, setSelectedImage] = useState(0);
+    const [reviewIndex, setReviewIndex] = useState(0);
+    const swiperRef = useRef(null);
+
+    const handlePrevReview = () => {
+      setReviewIndex(
+        (prev) => (prev === 0 ? selectedDesign.reviews.length - 1 : prev - 1)
+      );
+    };
+
+    const handleNextReview = () => {
+      setReviewIndex(
+        (prev) => (prev === selectedDesign.reviews.length - 1 ? 0 : prev + 1)
+      );
+    };
+
+    const currentReview = selectedDesign.reviews[reviewIndex];
+    const discountedPrice = calculateDiscountedPrice(
+      selectedDesign.originalPrice,
+      selectedDesign.discount
+    );
+
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+        {/* Header */}
+        <header className="bg-white shadow-sm sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-center items-center relative">
+            <button
+              onClick={goToHome}
+              className="absolute left-0 text-indigo-600 hover:text-indigo-800 font-medium flex items-center space-x-2"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
+              </svg>
+              <span>Back</span>
+            </button>
+            <h1 className="text-3xl md:text-4xl font-extrabold text-indigo-700 tracking-wide" style={{ fontFamily: "'Poppins', sans-serif" }}>
+              TeeNira
+            </h1>
+          </div>
+        </header>
+
+        {/* Design Detail */}
+        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Image Gallery */}
+            <div className="flex flex-col items-center">
+              {/* Swiper الصور الرئيسية */}
+              <Swiper
+                pagination={{ clickable: true }}
+                modules={[Pagination]}
+                className="h-96 w-full max-w-md rounded-xl shadow-lg overflow-hidden mb-4"
+                onSwiper={(swiper) => {
+                  swiperRef.current = swiper;
+                }}
+                onSlideChange={(swiper) => {
+                  setSelectedImage(swiper.activeIndex);
+                }}
+                initialSlide={selectedImage}
+              >
+                {selectedDesign.images.map((image, index) => (
+                  <SwiperSlide key={index}>
+                    <img
+                      src={image.trim()}
+                      alt={`${selectedDesign.name} - ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+
+              {/* مؤشرات الصور المصغّرة (Thumbnails) */}
+              <div className="flex gap-2 justify-center flex-wrap max-w-md">
+                {selectedDesign.images.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setSelectedImage(index);
+                      if (swiperRef.current) {
+                        swiperRef.current.slideTo(index);
+                      }
+                    }}
+                    className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                      index === selectedImage
+                        ? 'border-indigo-600 scale-105'
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <img
+                      src={image.trim()}
+                      alt={`Thumbnail ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Product Info */}
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                {selectedDesign.name}
+              </h2>
+              <div className="flex items-center space-x-4 mb-6">
+                <StarRating rating={selectedDesign.rating} />
+                <span className="text-gray-600">{selectedDesign.views} views</span>
+              </div>
+              <div className="flex items-center space-x-3 mb-6">
+                <span className="text-3xl font-bold text-green-600">
+                  ${discountedPrice.toFixed(2)}
+                </span>
+                <span className="text-xl text-gray-500 line-through">
+                  ${selectedDesign.originalPrice}
+                </span>
+                <span className="bg-red-100 text-red-800 text-sm font-semibold px-3 py-1 rounded">
+                  {selectedDesign.discount}% OFF
+                </span>
+              </div>
+              <p className="text-gray-700 text-lg leading-relaxed mb-8">
+                {selectedDesign.description}
+              </p>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Features:</h3>
+              <ul className="space-y-2 mb-8">
+                {selectedDesign.features.map((f, i) => (
+                  <li key={i} className="flex items-start space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-500 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={selectedDesign.buyLink?.trim()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-xl text-lg text-center transition-colors shadow-md"
+              >
+                Buy Now
+              </a>
+            </div>
+          </div>
+
+          {/* Customer Reviews */}
+          <section className="mt-16">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Customer Reviews</h2>
+            <div className="flex items-center mb-4">
+              <StarRating rating={selectedDesign.rating} />
+              <span className="text-gray-600 ml-2">
+                from {selectedDesign.reviews.length} reviews
+              </span>
+            </div>
+            <div className="relative">
+              <div className="bg-blue-50 p-6 rounded-lg shadow-md border border-blue-100">
+                <div className="flex items-center mb-4">
+                  <StarRating rating={currentReview.rating} />
+                  <span className="font-semibold ml-2">{currentReview.author}</span>
+                </div>
+                <p className="text-gray-700 italic mb-2">"{currentReview.comment}"</p>
+              </div>
+              <button
+                onClick={handlePrevReview}
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-500 hover:bg-gray-100 rounded-full p-2 shadow-md"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </button>
+              <button
+                onClick={handleNextReview}
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-500 hover:bg-gray-100 rounded-full p-2 shadow-md"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </div>
+          </section>
+        </main>
+
+        {/* Footer */}
+        <Footer />
+      </div>
+    );
+  };
+
+  // تذييل الصفحة
   const Footer = () => (
     <footer className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -304,382 +607,5 @@ export default function App() {
     </footer>
   );
 
-  // التمرير التلقائي بين التقييمات
-  useEffect(() => {
-    if (totalReviews <= 1) return;
-    const interval = setInterval(() => {
-      setActiveReviewIndex(prev => (prev === totalReviews - 1 ? 0 : prev + 1));
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [totalReviews]);
-
-  // الصفحة الرئيسية
-  const HomeScreen = () => {
-    const currentReview = allReviews[activeReviewIndex];
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-        {/* Header */}
-        <header className="bg-white shadow-sm sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-center items-center">
-            <h1
-              onClick={goToHome}
-              className="text-3xl md:text-4xl font-extrabold text-indigo-700 cursor-pointer hover:text-indigo-900 transition-colors tracking-wide"
-              style={{ fontFamily: "'Poppins', sans-serif" }}
-            >
-              TeeNira
-            </h1>
-          </div>
-        </header>
-
-        {/* Hero Banner */}
-        <section className="relative py-8 -mx-4 sm:-mx-6 lg:-mx-8 overflow-hidden">
-          <div
-            className="relative w-full h-64 md:h-80 bg-cover bg-center rounded-none shadow-lg"
-            style={{ backgroundImage: "url('/images/herobanner.jpg')" }}
-          >
-            <div className="absolute inset-0 bg-black bg-opacity-40 rounded-none"></div>
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
-              <div className="mb-6 px-4 py-1 bg-white bg-opacity-20 text-white border border-white border-opacity-30 rounded-full text-sm font-medium backdrop-blur-sm">
-                Premium T-Shirt Designs
-              </div>
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight text-center">
-                Express Your
-                <br />
-                <span className="block bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
-                  Unique Style
-                </span>
-              </h2>
-              <p className="text-base md:text-lg mb-6 max-w-xl text-center">
-                Discover our collection of premium quality t-shirts featuring stunning designs that help you stand out from the crowd.
-              </p>
-            </div>
-          </div>
-          <div className="mt-8 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
-              Essential Blanks
-            </h2>
-            <p className="text-lg text-gray-600">
-              We've Perfected the Oversized T-Shirt – Effortless Fit, Ultimate Comfort.
-            </p>
-          </div>
-        </section>
-
-        {/* Designs Grid */}
-        <section className="px-4 sm:px-6 lg:px-8 pb-16 mt-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Bestsellers</h2>
-          <div className="grid grid-cols-2 gap-4">
-            {designs.map((design) => {
-              const discountedPrice = calculateDiscountedPrice(design.originalPrice, design.discount);
-              return (
-                <div
-                  key={design.id}
-                  className="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border border-gray-100"
-                  onClick={() => viewDesign(design)}
-                >
-                  <div className="relative">
-                    <img
-                      src={design.images[0]}
-                      alt={design.name}
-                      className="w-full h-48 object-cover"
-                    />
-                    {design.isBestseller && (
-                      <div className="absolute top-2 left-2 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded">
-                        Bestseller
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-3">
-                    <div className="text-xs text-gray-500 mb-1">
-                      Digital download
-                    </div>
-                    <h3 className="text-sm font-medium text-gray-900 line-clamp-2 mb-2">
-                      {design.name}
-                    </h3>
-                    <div className="flex items-center mb-2">
-                      <StarRating rating={design.rating} showNumber={true} />
-                      <span className="text-xs text-gray-500 ml-1">({design.reviewsCount})</span>
-                    </div>
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-baseline space-x-1">
-                        <span className="text-lg font-bold text-green-600">
-                          ${discountedPrice.toFixed(2)}
-                        </span>
-                        <span className="text-sm text-gray-500 line-through">
-                          ${design.originalPrice.toFixed(2)}
-                        </span>
-                      </div>
-                      <span className="bg-red-100 text-red-800 text-xs font-semibold px-1 py-0.5 rounded">
-                        {design.discount}% OFF
-                      </span>
-                    </div>
-                    <div className="text-xs text-gray-500 mb-1">
-                      Ad by {design.seller} {design.seller === "Etsy seller" && "🌟"}
-                    </div>
-                    {design.shipping && (
-                      <div className="text-xs text-green-600 mb-2">
-                        {design.shipping}
-                      </div>
-                    )}
-                    <CompatibilityIcons compatibility={design.compatibility} />
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        viewDesign(design);
-                      }}
-                      className="w-full mt-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 rounded-lg transition-colors text-sm"
-                    >
-                      View Details
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* Customer Reviews */}
-        <section className="mt-16 px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">
-            Let customers speak for us
-          </h2>
-          <div className="flex justify-center mb-4">
-            <StarRating rating={4.8} />
-            <span className="text-gray-600 ml-2">
-              from {totalReviews} reviews
-            </span>
-          </div>
-          <div className="relative max-w-md mx-auto">
-            <div className="bg-blue-50 p-6 rounded-lg shadow-md border border-blue-100 text-center transition-opacity duration-500">
-              <div className="flex justify-center items-center mb-3">
-                <StarRating rating={currentReview.rating} />
-                <span className="font-semibold ml-2">{currentReview.author}</span>
-              </div>
-              <p className="text-gray-700 italic">"{currentReview.comment}"</p>
-            </div>
-            <div className="flex justify-center mt-4 space-x-2">
-              {allReviews.map((_, idx) => (
-                <div
-                  key={idx}
-                  className={`w-2 h-2 rounded-full ${
-                    idx === activeReviewIndex ? "bg-indigo-600" : "bg-gray-300"
-                  }`}
-                ></div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Footer */}
-        <Footer />
-      </div>
-    );
-  };
-
-  // صفحة التفاصيل
-  const DetailScreen = () => {
-    const [selectedImage, setSelectedImage] = useState(0);
-    const [reviewIndex, setReviewIndex] = useState(0);
-    const swiperRef = useRef(null);
-
-    const handlePrevReview = () => {
-      setReviewIndex(
-        (prev) => (prev === 0 ? selectedDesign.reviews.length - 1 : prev - 1)
-      );
-    };
-
-    const handleNextReview = () => {
-      setReviewIndex(
-        (prev) => (prev === selectedDesign.reviews.length - 1 ? 0 : prev + 1)
-      );
-    };
-
-    const currentReview = selectedDesign.reviews[reviewIndex];
-    const discountedPrice = calculateDiscountedPrice(
-      selectedDesign.originalPrice,
-      selectedDesign.discount
-    );
-
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-        {/* Header */}
-        <header className="bg-white shadow-sm sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-center items-center relative">
-            <button
-              onClick={goToHome}
-              className="absolute left-0 text-indigo-600 hover:text-indigo-800 font-medium flex items-center space-x-2"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
-              </svg>
-              <span>Back</span>
-            </button>
-            <h1 className="text-3xl md:text-4xl font-extrabold text-indigo-700 tracking-wide" style={{ fontFamily: "'Poppins', sans-serif" }}>
-              TeeNira
-            </h1>
-          </div>
-        </header>
-
-        {/* Design Detail */}
-        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Image Gallery */}
-            <div className="flex flex-col items-center">
-              <Swiper
-                pagination={{ clickable: true }}
-                modules={[Pagination]}
-                className="h-96 w-full max-w-md rounded-xl shadow-lg overflow-hidden mb-4"
-                onSwiper={(swiper) => {
-                  swiperRef.current = swiper;
-                }}
-                onSlideChange={(swiper) => {
-                  setSelectedImage(swiper.activeIndex);
-                }}
-                initialSlide={selectedImage}
-              >
-                {selectedDesign.images.map((image, index) => (
-                  <SwiperSlide key={index}>
-                    <img
-                      src={image.trim()}
-                      alt={`${selectedDesign.name} - ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-              <div className="flex gap-2 justify-center flex-wrap max-w-md">
-                {selectedDesign.images.map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setSelectedImage(index);
-                      if (swiperRef.current) {
-                        swiperRef.current.slideTo(index);
-                      }
-                    }}
-                    className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
-                      index === selectedImage
-                        ? 'border-indigo-600 scale-105'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <img
-                      src={image.trim()}
-                      alt={`Thumbnail ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Product Info */}
-            <div>
-              <div className="flex items-center mb-2">
-                {selectedDesign.isBestseller && (
-                  <span className="bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded mr-2">
-                    Bestseller
-                  </span>
-                )}
-              </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                {selectedDesign.name}
-              </h2>
-              <div className="flex items-center space-x-4 mb-6">
-                <StarRating rating={selectedDesign.rating} />
-                <span className="text-gray-600">{selectedDesign.reviewsCount} reviews</span>
-              </div>
-              <div className="flex items-center space-x-3 mb-6">
-                <span className="text-3xl font-bold text-green-600">
-                  ${discountedPrice.toFixed(2)}
-                </span>
-                <span className="text-xl text-gray-500 line-through">
-                  ${selectedDesign.originalPrice.toFixed(2)}
-                </span>
-                <span className="bg-red-100 text-red-800 text-sm font-semibold px-3 py-1 rounded">
-                  {selectedDesign.discount}% OFF
-                </span>
-              </div>
-              <div className="mb-4">
-                <span className="text-sm text-gray-500">Digital download</span>
-                <CompatibilityIcons compatibility={selectedDesign.compatibility} />
-              </div>
-              {selectedDesign.seller && (
-                <div className="text-sm text-gray-500 mb-4">
-                  Ad by {selectedDesign.seller} {selectedDesign.seller === "Etsy seller" && "🌟"}
-                </div>
-              )}
-              {selectedDesign.shipping && (
-                <div className="text-sm text-green-600 mb-4">
-                  {selectedDesign.shipping}
-                </div>
-              )}
-              <p className="text-gray-700 text-lg leading-relaxed mb-8">
-                {selectedDesign.description}
-              </p>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Features:</h3>
-              <ul className="space-y-2 mb-8">
-                {selectedDesign.features.map((f, i) => (
-                  <li key={i} className="flex items-start space-x-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-500 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={selectedDesign.buyLink?.trim()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-xl text-lg text-center transition-colors shadow-md"
-              >
-                Buy Now
-              </a>
-            </div>
-          </div>
-
-          {/* Customer Reviews */}
-          <section className="mt-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Customer Reviews</h2>
-            <div className="flex items-center mb-4">
-              <StarRating rating={selectedDesign.rating} />
-              <span className="text-gray-600 ml-2">
-                from {selectedDesign.reviews.length} reviews
-              </span>
-            </div>
-            <div className="relative">
-              <div className="bg-blue-50 p-6 rounded-lg shadow-md border border-blue-100">
-                <div className="flex items-center mb-4">
-                  <StarRating rating={currentReview.rating} />
-                  <span className="font-semibold ml-2">{currentReview.author}</span>
-                </div>
-                <p className="text-gray-700 italic mb-2">"{currentReview.comment}"</p>
-              </div>
-              <button
-                onClick={handlePrevReview}
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-500 hover:bg-gray-100 rounded-full p-2 shadow-md"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-              </button>
-              <button
-                onClick={handleNextReview}
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-500 hover:bg-gray-100 rounded-full p-2 shadow-md"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                </svg>
-              </button>
-            </div>
-          </section>
-        </main>
-
-        {/* Footer */}
-        <Footer />
-      </div>
-    );
-  };
-
   return currentView === "home" ? <HomeScreen /> : <DetailScreen />;
-      }
+        }
