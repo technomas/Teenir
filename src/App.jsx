@@ -8,13 +8,8 @@ export default function App() {
   const [currentView, setCurrentView] = useState("home");
   const [selectedDesign, setSelectedDesign] = useState(null);
   const [email, setEmail] = useState("");
-  const [activeReviewIndex, setActiveReviewIndex] = useState(0);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [currentView, selectedDesign]);
-
-  // بيانات التصاميم (6 منتجات)
+  // يجب تعريف allReviews و totalReviews قبل أي استخدام
   const designs = [
     {
       id: 1,
@@ -150,6 +145,10 @@ export default function App() {
     }
   ];
 
+  // ✅ تم نقل هذه التعريفات قبل أي استخدام
+  const allReviews = designs.flatMap(d => d.reviews);
+  const totalReviews = allReviews.length;
+
   const calculateDiscountedPrice = (price, discount) => {
     return price * (1 - discount / 100);
   };
@@ -163,6 +162,10 @@ export default function App() {
     setSelectedDesign(design);
     setCurrentView("detail");
   };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentView, selectedDesign]);
 
   // نجمة التقييم
   const StarRating = ({ rating, showNumber = false }) => (
@@ -200,400 +203,7 @@ export default function App() {
     </div>
   );
 
-  // الصفحة الرئيسية
-  const HomeScreen = () => {
-    const currentReview = allReviews[activeReviewIndex];
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-        {/* Header */}
-        <header className="bg-white shadow-sm sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-center items-center">
-            <h1
-              onClick={goToHome}
-              className="text-3xl md:text-4xl font-extrabold text-indigo-700 cursor-pointer hover:text-indigo-900 transition-colors tracking-wide"
-              style={{ fontFamily: "'Poppins', sans-serif" }}
-            >
-              TeeNira
-            </h1>
-          </div>
-        </header>
-
-        {/* Hero Banner */}
-        <section className="relative py-8 -mx-4 sm:-mx-6 lg:-mx-8 overflow-hidden">
-          <div
-            className="relative w-full h-64 md:h-80 bg-cover bg-center rounded-none shadow-lg"
-            style={{ backgroundImage: "url('/images/herobanner.jpg')" }}
-          >
-            <div className="absolute inset-0 bg-black bg-opacity-40 rounded-none"></div>
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
-              <div className="mb-6 px-4 py-1 bg-white bg-opacity-20 text-white border border-white border-opacity-30 rounded-full text-sm font-medium backdrop-blur-sm">
-                Premium T-Shirt Designs
-              </div>
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight text-center">
-                Express Your
-                <br />
-                <span className="block bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
-                  Unique Style
-                </span>
-              </h2>
-              <p className="text-base md:text-lg mb-6 max-w-xl text-center">
-                Discover our collection of premium quality t-shirts featuring stunning designs that help you stand out from the crowd.
-              </p>
-            </div>
-          </div>
-          <div className="mt-8 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
-              Essential Blanks
-            </h2>
-            <p className="text-lg text-gray-600">
-              We've Perfected the Oversized T-Shirt – Effortless Fit, Ultimate Comfort.
-            </p>
-          </div>
-        </section>
-
-        {/* Designs Grid - 2 per row on mobile */}
-        <section className="px-4 sm:px-6 lg:px-8 pb-16 mt-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Bestsellers</h2>
-          <div className="grid grid-cols-2 gap-4">
-            {designs.map((design) => {
-              const discountedPrice = calculateDiscountedPrice(design.originalPrice, design.discount);
-              return (
-                <div
-                  key={design.id}
-                  className="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border border-gray-100"
-                  onClick={() => viewDesign(design)}
-                >
-                  {/* الصورة */}
-                  <div className="relative">
-                    <img
-                      src={design.images[0]}
-                      alt={design.name}
-                      className="w-full h-48 object-cover"
-                    />
-                    {design.isBestseller && (
-                      <div className="absolute top-2 left-2 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded">
-                        Bestseller
-                      </div>
-                    )}
-                  </div>
-
-                  {/* التفاصيل */}
-                  <div className="p-3">
-                    <div className="text-xs text-gray-500 mb-1">
-                      Digital download
-                    </div>
-                    
-                    <h3 className="text-sm font-medium text-gray-900 line-clamp-2 mb-2">
-                      {design.name}
-                    </h3>
-                    
-                    <div className="flex items-center mb-2">
-                      <StarRating rating={design.rating} showNumber={true} />
-                      <span className="text-xs text-gray-500 ml-1">({design.reviewsCount})</span>
-                    </div>
-                    
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-baseline space-x-1">
-                        <span className="text-lg font-bold text-green-600">
-                          ${discountedPrice.toFixed(2)}
-                        </span>
-                        <span className="text-sm text-gray-500 line-through">
-                          ${design.originalPrice.toFixed(2)}
-                        </span>
-                      </div>
-                      <span className="bg-red-100 text-red-800 text-xs font-semibold px-1 py-0.5 rounded">
-                        {design.discount}% OFF
-                      </span>
-                    </div>
-                    
-                    <div className="text-xs text-gray-500 mb-1">
-                      Ad by {design.seller} {design.seller === "Etsy seller" && "🌟"}
-                    </div>
-                    
-                    {design.shipping && (
-                      <div className="text-xs text-green-600 mb-2">
-                        {design.shipping}
-                      </div>
-                    )}
-                    
-                    <CompatibilityIcons compatibility={design.compatibility} />
-                    
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        viewDesign(design);
-                      }}
-                      className="w-full mt-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 rounded-lg transition-colors text-sm"
-                    >
-                      View Details
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* Customer Reviews */}
-        <section className="mt-16 px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">
-            Let customers speak for us
-          </h2>
-          <div className="flex justify-center mb-4">
-            <StarRating rating={4.8} />
-            <span className="text-gray-600 ml-2">
-              from {totalReviews} reviews
-            </span>
-          </div>
-
-          <div className="relative max-w-md mx-auto">
-            <div className="bg-blue-50 p-6 rounded-lg shadow-md border border-blue-100 text-center transition-opacity duration-500">
-              <div className="flex justify-center items-center mb-3">
-                <StarRating rating={currentReview.rating} />
-                <span className="font-semibold ml-2">{currentReview.author}</span>
-              </div>
-              <p className="text-gray-700 italic">"{currentReview.comment}"</p>
-            </div>
-
-            {/* Indicators */}
-            <div className="flex justify-center mt-4 space-x-2">
-              {allReviews.map((_, idx) => (
-                <div
-                  key={idx}
-                  className={`w-2 h-2 rounded-full ${
-                    idx === activeReviewIndex ? "bg-indigo-600" : "bg-gray-300"
-                  }`}
-                ></div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Footer */}
-        <Footer />
-      </div>
-    );
-  };
-
-  // صفحة التفاصيل
-  const DetailScreen = () => {
-    const [selectedImage, setSelectedImage] = useState(0);
-    const [reviewIndex, setReviewIndex] = useState(0);
-    const swiperRef = useRef(null);
-
-    const handlePrevReview = () => {
-      setReviewIndex(
-        (prev) => (prev === 0 ? selectedDesign.reviews.length - 1 : prev - 1)
-      );
-    };
-
-    const handleNextReview = () => {
-      setReviewIndex(
-        (prev) => (prev === selectedDesign.reviews.length - 1 ? 0 : prev + 1)
-      );
-    };
-
-    const currentReview = selectedDesign.reviews[reviewIndex];
-    const discountedPrice = calculateDiscountedPrice(
-      selectedDesign.originalPrice,
-      selectedDesign.discount
-    );
-
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-        {/* Header */}
-        <header className="bg-white shadow-sm sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-center items-center relative">
-            <button
-              onClick={goToHome}
-              className="absolute left-0 text-indigo-600 hover:text-indigo-800 font-medium flex items-center space-x-2"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
-              </svg>
-              <span>Back</span>
-            </button>
-            <h1 className="text-3xl md:text-4xl font-extrabold text-indigo-700 tracking-wide" style={{ fontFamily: "'Poppins', sans-serif" }}>
-              TeeNira
-            </h1>
-          </div>
-        </header>
-
-        {/* Design Detail */}
-        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Image Gallery */}
-            <div className="flex flex-col items-center">
-              {/* Swiper الصور الرئيسية */}
-              <Swiper
-                pagination={{ clickable: true }}
-                modules={[Pagination]}
-                className="h-96 w-full max-w-md rounded-xl shadow-lg overflow-hidden mb-4"
-                onSwiper={(swiper) => {
-                  swiperRef.current = swiper;
-                }}
-                onSlideChange={(swiper) => {
-                  setSelectedImage(swiper.activeIndex);
-                }}
-                initialSlide={selectedImage}
-              >
-                {selectedDesign.images.map((image, index) => (
-                  <SwiperSlide key={index}>
-                    <img
-                      src={image.trim()}
-                      alt={`${selectedDesign.name} - ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-
-              {/* مؤشرات الصور المصغّرة (Thumbnails) */}
-              <div className="flex gap-2 justify-center flex-wrap max-w-md">
-                {selectedDesign.images.map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setSelectedImage(index);
-                      if (swiperRef.current) {
-                        swiperRef.current.slideTo(index);
-                      }
-                    }}
-                    className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
-                      index === selectedImage
-                        ? 'border-indigo-600 scale-105'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <img
-                      src={image.trim()}
-                      alt={`Thumbnail ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Product Info */}
-            <div>
-              <div className="flex items-center mb-2">
-                {selectedDesign.isBestseller && (
-                  <span className="bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded mr-2">
-                    Bestseller
-                  </span>
-                )}
-              </div>
-              
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                {selectedDesign.name}
-              </h2>
-              
-              <div className="flex items-center space-x-4 mb-6">
-                <StarRating rating={selectedDesign.rating} />
-                <span className="text-gray-600">{selectedDesign.reviewsCount} reviews</span>
-              </div>
-              
-              <div className="flex items-center space-x-3 mb-6">
-                <span className="text-3xl font-bold text-green-600">
-                  ${discountedPrice.toFixed(2)}
-                </span>
-                <span className="text-xl text-gray-500 line-through">
-                  ${selectedDesign.originalPrice.toFixed(2)}
-                </span>
-                <span className="bg-red-100 text-red-800 text-sm font-semibold px-3 py-1 rounded">
-                  {selectedDesign.discount}% OFF
-                </span>
-              </div>
-              
-              <div className="mb-4">
-                <span className="text-sm text-gray-500">Digital download</span>
-                <CompatibilityIcons compatibility={selectedDesign.compatibility} />
-              </div>
-              
-              {selectedDesign.seller && (
-                <div className="text-sm text-gray-500 mb-4">
-                  Ad by {selectedDesign.seller} {selectedDesign.seller === "Etsy seller" && "🌟"}
-                </div>
-              )}
-              
-              {selectedDesign.shipping && (
-                <div className="text-sm text-green-600 mb-4">
-                  {selectedDesign.shipping}
-                </div>
-              )}
-              
-              <p className="text-gray-700 text-lg leading-relaxed mb-8">
-                {selectedDesign.description}
-              </p>
-              
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Features:</h3>
-              <ul className="space-y-2 mb-8">
-                {selectedDesign.features.map((f, i) => (
-                  <li key={i} className="flex items-start space-x-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-500 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    <span>{f}</span>
-                  </li>
-                ))}
-              </ul>
-              
-              <a
-                href={selectedDesign.buyLink?.trim()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-xl text-lg text-center transition-colors shadow-md"
-              >
-                Buy Now
-              </a>
-            </div>
-          </div>
-
-          {/* Customer Reviews */}
-          <section className="mt-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Customer Reviews</h2>
-            <div className="flex items-center mb-4">
-              <StarRating rating={selectedDesign.rating} />
-              <span className="text-gray-600 ml-2">
-                from {selectedDesign.reviews.length} reviews
-              </span>
-            </div>
-            <div className="relative">
-              <div className="bg-blue-50 p-6 rounded-lg shadow-md border border-blue-100">
-                <div className="flex items-center mb-4">
-                  <StarRating rating={currentReview.rating} />
-                  <span className="font-semibold ml-2">{currentReview.author}</span>
-                </div>
-                <p className="text-gray-700 italic mb-2">"{currentReview.comment}"</p>
-              </div>
-              <button
-                onClick={handlePrevReview}
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-500 hover:bg-gray-100 rounded-full p-2 shadow-md"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-                </svg>
-              </button>
-              <button
-                onClick={handleNextReview}
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-500 hover:bg-gray-100 rounded-full p-2 shadow-md"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                </svg>
-              </button>
-            </div>
-          </section>
-        </main>
-
-        {/* Footer */}
-        <Footer />
-      </div>
-    );
-  };
-
-  // تذييل الصفحة
+  // ✅ تعريف Footer قبل استخدامه
   const Footer = () => (
     <footer className="bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -694,5 +304,382 @@ export default function App() {
     </footer>
   );
 
+  // التمرير التلقائي بين التقييمات
+  useEffect(() => {
+    if (totalReviews <= 1) return;
+    const interval = setInterval(() => {
+      setActiveReviewIndex(prev => (prev === totalReviews - 1 ? 0 : prev + 1));
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [totalReviews]);
+
+  // الصفحة الرئيسية
+  const HomeScreen = () => {
+    const currentReview = allReviews[activeReviewIndex];
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+        {/* Header */}
+        <header className="bg-white shadow-sm sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-center items-center">
+            <h1
+              onClick={goToHome}
+              className="text-3xl md:text-4xl font-extrabold text-indigo-700 cursor-pointer hover:text-indigo-900 transition-colors tracking-wide"
+              style={{ fontFamily: "'Poppins', sans-serif" }}
+            >
+              TeeNira
+            </h1>
+          </div>
+        </header>
+
+        {/* Hero Banner */}
+        <section className="relative py-8 -mx-4 sm:-mx-6 lg:-mx-8 overflow-hidden">
+          <div
+            className="relative w-full h-64 md:h-80 bg-cover bg-center rounded-none shadow-lg"
+            style={{ backgroundImage: "url('/images/herobanner.jpg')" }}
+          >
+            <div className="absolute inset-0 bg-black bg-opacity-40 rounded-none"></div>
+            <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
+              <div className="mb-6 px-4 py-1 bg-white bg-opacity-20 text-white border border-white border-opacity-30 rounded-full text-sm font-medium backdrop-blur-sm">
+                Premium T-Shirt Designs
+              </div>
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight text-center">
+                Express Your
+                <br />
+                <span className="block bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
+                  Unique Style
+                </span>
+              </h2>
+              <p className="text-base md:text-lg mb-6 max-w-xl text-center">
+                Discover our collection of premium quality t-shirts featuring stunning designs that help you stand out from the crowd.
+              </p>
+            </div>
+          </div>
+          <div className="mt-8 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
+              Essential Blanks
+            </h2>
+            <p className="text-lg text-gray-600">
+              We've Perfected the Oversized T-Shirt – Effortless Fit, Ultimate Comfort.
+            </p>
+          </div>
+        </section>
+
+        {/* Designs Grid */}
+        <section className="px-4 sm:px-6 lg:px-8 pb-16 mt-12">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Bestsellers</h2>
+          <div className="grid grid-cols-2 gap-4">
+            {designs.map((design) => {
+              const discountedPrice = calculateDiscountedPrice(design.originalPrice, design.discount);
+              return (
+                <div
+                  key={design.id}
+                  className="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border border-gray-100"
+                  onClick={() => viewDesign(design)}
+                >
+                  <div className="relative">
+                    <img
+                      src={design.images[0]}
+                      alt={design.name}
+                      className="w-full h-48 object-cover"
+                    />
+                    {design.isBestseller && (
+                      <div className="absolute top-2 left-2 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded">
+                        Bestseller
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-3">
+                    <div className="text-xs text-gray-500 mb-1">
+                      Digital download
+                    </div>
+                    <h3 className="text-sm font-medium text-gray-900 line-clamp-2 mb-2">
+                      {design.name}
+                    </h3>
+                    <div className="flex items-center mb-2">
+                      <StarRating rating={design.rating} showNumber={true} />
+                      <span className="text-xs text-gray-500 ml-1">({design.reviewsCount})</span>
+                    </div>
+                    <div className="flex items-center justify-between mb-2">
+                      <div className="flex items-baseline space-x-1">
+                        <span className="text-lg font-bold text-green-600">
+                          ${discountedPrice.toFixed(2)}
+                        </span>
+                        <span className="text-sm text-gray-500 line-through">
+                          ${design.originalPrice.toFixed(2)}
+                        </span>
+                      </div>
+                      <span className="bg-red-100 text-red-800 text-xs font-semibold px-1 py-0.5 rounded">
+                        {design.discount}% OFF
+                      </span>
+                    </div>
+                    <div className="text-xs text-gray-500 mb-1">
+                      Ad by {design.seller} {design.seller === "Etsy seller" && "🌟"}
+                    </div>
+                    {design.shipping && (
+                      <div className="text-xs text-green-600 mb-2">
+                        {design.shipping}
+                      </div>
+                    )}
+                    <CompatibilityIcons compatibility={design.compatibility} />
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        viewDesign(design);
+                      }}
+                      className="w-full mt-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-3 rounded-lg transition-colors text-sm"
+                    >
+                      View Details
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Customer Reviews */}
+        <section className="mt-16 px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">
+            Let customers speak for us
+          </h2>
+          <div className="flex justify-center mb-4">
+            <StarRating rating={4.8} />
+            <span className="text-gray-600 ml-2">
+              from {totalReviews} reviews
+            </span>
+          </div>
+          <div className="relative max-w-md mx-auto">
+            <div className="bg-blue-50 p-6 rounded-lg shadow-md border border-blue-100 text-center transition-opacity duration-500">
+              <div className="flex justify-center items-center mb-3">
+                <StarRating rating={currentReview.rating} />
+                <span className="font-semibold ml-2">{currentReview.author}</span>
+              </div>
+              <p className="text-gray-700 italic">"{currentReview.comment}"</p>
+            </div>
+            <div className="flex justify-center mt-4 space-x-2">
+              {allReviews.map((_, idx) => (
+                <div
+                  key={idx}
+                  className={`w-2 h-2 rounded-full ${
+                    idx === activeReviewIndex ? "bg-indigo-600" : "bg-gray-300"
+                  }`}
+                ></div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <Footer />
+      </div>
+    );
+  };
+
+  // صفحة التفاصيل
+  const DetailScreen = () => {
+    const [selectedImage, setSelectedImage] = useState(0);
+    const [reviewIndex, setReviewIndex] = useState(0);
+    const swiperRef = useRef(null);
+
+    const handlePrevReview = () => {
+      setReviewIndex(
+        (prev) => (prev === 0 ? selectedDesign.reviews.length - 1 : prev - 1)
+      );
+    };
+
+    const handleNextReview = () => {
+      setReviewIndex(
+        (prev) => (prev === selectedDesign.reviews.length - 1 ? 0 : prev + 1)
+      );
+    };
+
+    const currentReview = selectedDesign.reviews[reviewIndex];
+    const discountedPrice = calculateDiscountedPrice(
+      selectedDesign.originalPrice,
+      selectedDesign.discount
+    );
+
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+        {/* Header */}
+        <header className="bg-white shadow-sm sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-center items-center relative">
+            <button
+              onClick={goToHome}
+              className="absolute left-0 text-indigo-600 hover:text-indigo-800 font-medium flex items-center space-x-2"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
+              </svg>
+              <span>Back</span>
+            </button>
+            <h1 className="text-3xl md:text-4xl font-extrabold text-indigo-700 tracking-wide" style={{ fontFamily: "'Poppins', sans-serif" }}>
+              TeeNira
+            </h1>
+          </div>
+        </header>
+
+        {/* Design Detail */}
+        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Image Gallery */}
+            <div className="flex flex-col items-center">
+              <Swiper
+                pagination={{ clickable: true }}
+                modules={[Pagination]}
+                className="h-96 w-full max-w-md rounded-xl shadow-lg overflow-hidden mb-4"
+                onSwiper={(swiper) => {
+                  swiperRef.current = swiper;
+                }}
+                onSlideChange={(swiper) => {
+                  setSelectedImage(swiper.activeIndex);
+                }}
+                initialSlide={selectedImage}
+              >
+                {selectedDesign.images.map((image, index) => (
+                  <SwiperSlide key={index}>
+                    <img
+                      src={image.trim()}
+                      alt={`${selectedDesign.name} - ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+              <div className="flex gap-2 justify-center flex-wrap max-w-md">
+                {selectedDesign.images.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setSelectedImage(index);
+                      if (swiperRef.current) {
+                        swiperRef.current.slideTo(index);
+                      }
+                    }}
+                    className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                      index === selectedImage
+                        ? 'border-indigo-600 scale-105'
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <img
+                      src={image.trim()}
+                      alt={`Thumbnail ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Product Info */}
+            <div>
+              <div className="flex items-center mb-2">
+                {selectedDesign.isBestseller && (
+                  <span className="bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded mr-2">
+                    Bestseller
+                  </span>
+                )}
+              </div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                {selectedDesign.name}
+              </h2>
+              <div className="flex items-center space-x-4 mb-6">
+                <StarRating rating={selectedDesign.rating} />
+                <span className="text-gray-600">{selectedDesign.reviewsCount} reviews</span>
+              </div>
+              <div className="flex items-center space-x-3 mb-6">
+                <span className="text-3xl font-bold text-green-600">
+                  ${discountedPrice.toFixed(2)}
+                </span>
+                <span className="text-xl text-gray-500 line-through">
+                  ${selectedDesign.originalPrice.toFixed(2)}
+                </span>
+                <span className="bg-red-100 text-red-800 text-sm font-semibold px-3 py-1 rounded">
+                  {selectedDesign.discount}% OFF
+                </span>
+              </div>
+              <div className="mb-4">
+                <span className="text-sm text-gray-500">Digital download</span>
+                <CompatibilityIcons compatibility={selectedDesign.compatibility} />
+              </div>
+              {selectedDesign.seller && (
+                <div className="text-sm text-gray-500 mb-4">
+                  Ad by {selectedDesign.seller} {selectedDesign.seller === "Etsy seller" && "🌟"}
+                </div>
+              )}
+              {selectedDesign.shipping && (
+                <div className="text-sm text-green-600 mb-4">
+                  {selectedDesign.shipping}
+                </div>
+              )}
+              <p className="text-gray-700 text-lg leading-relaxed mb-8">
+                {selectedDesign.description}
+              </p>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Features:</h3>
+              <ul className="space-y-2 mb-8">
+                {selectedDesign.features.map((f, i) => (
+                  <li key={i} className="flex items-start space-x-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-500 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={selectedDesign.buyLink?.trim()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-xl text-lg text-center transition-colors shadow-md"
+              >
+                Buy Now
+              </a>
+            </div>
+          </div>
+
+          {/* Customer Reviews */}
+          <section className="mt-16">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Customer Reviews</h2>
+            <div className="flex items-center mb-4">
+              <StarRating rating={selectedDesign.rating} />
+              <span className="text-gray-600 ml-2">
+                from {selectedDesign.reviews.length} reviews
+              </span>
+            </div>
+            <div className="relative">
+              <div className="bg-blue-50 p-6 rounded-lg shadow-md border border-blue-100">
+                <div className="flex items-center mb-4">
+                  <StarRating rating={currentReview.rating} />
+                  <span className="font-semibold ml-2">{currentReview.author}</span>
+                </div>
+                <p className="text-gray-700 italic mb-2">"{currentReview.comment}"</p>
+              </div>
+              <button
+                onClick={handlePrevReview}
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-500 hover:bg-gray-100 rounded-full p-2 shadow-md"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                </svg>
+              </button>
+              <button
+                onClick={handleNextReview}
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-500 hover:bg-gray-100 rounded-full p-2 shadow-md"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </div>
+          </section>
+        </main>
+
+        {/* Footer */}
+        <Footer />
+      </div>
+    );
+  };
+
   return currentView === "home" ? <HomeScreen /> : <DetailScreen />;
-                          }
+      }
