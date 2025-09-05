@@ -746,4 +746,4 @@ export default function App() {
   );
 
   return currentView === "home" ? <HomeScreen /> : <DetailScreen />;
-                    }
+}
