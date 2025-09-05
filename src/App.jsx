@@ -9,153 +9,128 @@ export default function App() {
   const [selectedDesign, setSelectedDesign] = useState(null);
   const [email, setEmail] = useState("");
   const [activeReviewIndex, setActiveReviewIndex] = useState(0);
-  
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentView, selectedDesign]);
 
-  // بيانات التصاميم (4 منتجات)
+  // بيانات التصاميم (6 منتجات)
   const designs = [
     {
       id: 1,
+      name: "Hangin' With My Boos Shirt, Cute Pumpkin Bat...",
+      images: [
+        "https://placehold.co/400x600/ff7f00/ffffff?text=Halloween+Shirt",
+      ],
+      buyLink: "https://paypal.me/yourname/halloween",
+      originalPrice: 18.99,
+      discount: 50,
+      rating: 4.8,
+      reviewsCount: 55700,
+      description: "Cute Halloween shirt with ghosts and pumpkins.",
+      features: ["High-resolution PNG", "Instant download", "Commercial use"],
+      compatibility: ["Ai", "Ps", "Id"],
+      tags: ["Halloween", "Pumpkin", "Ghosts"],
+      isBestseller: true,
+      seller: "Etsy seller",
+      shipping: "Free shipping",
+      reviews: [
+        { rating: 5, comment: "Perfect for Halloween!", author: "Linda M." },
+      ],
+    },
+    {
+      id: 2,
       name: "Basketball Png, Basketball Mom Png",
       images: [
-        "https://placehold.co/400x600/1a1a2e/ffffff?text=Basketball+Design",
-        "https://placehold.co/400x600/2d2d44/ffffff?text=Basketball+Design+2",
-        "https://placehold.co/400x600/3e3e5a/ffffff?text=Basketball+Design+3",
+        "https://placehold.co/400x600/ffffff/000000?text=Basketball+Mom",
       ],
       buyLink: "https://paypal.me/yourname/basketball",
       originalPrice: 4.51,
       discount: 50,
       rating: 5.0,
       reviewsCount: 510,
-      description: "Basketball Mom PNG and SVG files perfect for shirts, mugs, and more. Digital download includes multiple formats.",
-      features: [
-        "High-resolution PNG (300 DPI)",
-        "SVG file for cutting machines",
-        "Instant digital download",
-        "Commercial use allowed",
-      ],
+      description: "Basketball Mom PNG and SVG files perfect for shirts, mugs, and more.",
+      features: ["High-resolution PNG", "SVG file", "Instant download"],
       compatibility: ["Ai", "Ps", "Id"],
       tags: ["Basketball", "Sports", "Mom"],
       isBestseller: true,
       seller: "Etsy seller",
+      shipping: "Free shipping",
       reviews: [
         { rating: 5, comment: "Perfect for my basketball team shirts!", author: "Sarah J." },
-        { rating: 5, comment: "Great quality and fast download.", author: "Mike T." },
       ],
     },
     {
-      id: 2,
-      name: "Custom T-Shirt Design Service, Custom Digital",
+      id: 3,
+      name: "300+ Premium T-shirt Designs Bundle",
       images: [
-        "https://placehold.co/400x600/0f3460/ffffff?text=Custom+Design",
-        "https://placehold.co/400x600/1a4877/ffffff?text=Custom+Design+2",
+        "https://placehold.co/400x600/000000/ffffff?text=300+T-Shirts",
+      ],
+      buyLink: "https://paypal.me/yourname/bundle",
+      originalPrice: 4.54,
+      discount: 60,
+      rating: 4.5,
+      reviewsCount: 13,
+      description: "Bundle of 300+ premium t-shirt designs in SVG and PNG formats.",
+      features: ["300+ designs", "SVG & PNG", "Commercial use"],
+      compatibility: ["Ai", "Ps", "Id"],
+      tags: ["Bundle", "SVG", "PNG"],
+      isBestseller: true,
+      seller: "GraphicSouk",
+      shipping: "Free shipping",
+      reviews: [
+        { rating: 5, comment: "Great value for the price!", author: "Mike R." },
+      ],
+    },
+    {
+      id: 4,
+      name: "Custom T-Shirt Design Service",
+      images: [
+        "https://placehold.co/400x600/000000/ffffff?text=Custom+Designer",
       ],
       buyLink: "https://printly.com/",
       originalPrice: 24.97,
       discount: 60,
       rating: 4.8,
       reviewsCount: 126,
-      description: "Professional custom t-shirt design service for your business or event. Get a unique design tailored to your needs.",
-      features: [
-        "Custom design from scratch",
-        "Unlimited revisions",
-        "Fast turnaround",
-        "Print-ready files",
-      ],
+      description: "Professional custom t-shirt design service for your business or event.",
+      features: ["Custom design", "Unlimited revisions", "Fast turnaround"],
       compatibility: ["Ai", "Ps", "Id", "Service"],
       tags: ["Custom", "Design", "Service"],
-      isDigitalService: true,
+      isBestseller: true,
       seller: "CraftsinDigital",
       shipping: "Free shipping",
       reviews: [
         { rating: 5, comment: "Amazing design service! Will order again.", author: "Jessica L." },
-        { rating: 4, comment: "Good communication and quality work.", author: "Robert K." },
-      ],
-    },
-    {
-      id: 3,
-      name: "Superheroes Digital Pack",
-      images: [
-        "https://placehold.co/400x600/1f4037/ffffff?text=Superheroes+Pack",
-        "https://placehold.co/400x600/2d6a4f/ffffff?text=Superheroes+Pack+2",
-      ],
-      buyLink: "https://paypal.me/yourname/superheroes",
-      originalPrice: 5.99,
-      discount: 40,
-      rating: 4.9,
-      reviewsCount: 287,
-      description: "Collection of superhero-themed SVG and PNG files. Perfect for kids' clothing and party decorations.",
-      features: [
-        "Multiple superhero designs",
-        "SVG and PNG formats",
-        "High-resolution files",
-        "Commercial license",
-      ],
-      compatibility: ["Ai", "Ps"],
-      tags: ["Superheroes", "Kids", "Digital"],
-      isBestseller: true,
-      reviews: [
-        { rating: 5, comment: "My son loves these designs!", author: "Amanda R." },
-        { rating: 5, comment: "Perfect for my daycare business.", author: "Thomas W." },
-      ],
-    },
-    {
-      id: 4,
-      name: "Vintage Motorcycle Design",
-      images: [
-        "https://placehold.co/400x600/0c0c2e/ffffff?text=Motorcycle+Design",
-        "https://placehold.co/400x600/1a1a4a/ffffff?text=Motorcycle+Design+2",
-      ],
-      buyLink: "https://paypal.me/yourname/motorcycle",
-      originalPrice: 3.99,
-      discount: 45,
-      rating: 4.7,
-      reviewsCount: 192,
-      description: "Vintage motorcycle themed design files. Retro style perfect for biker clubs and enthusiasts.",
-      features: [
-        "Vintage style design",
-        "Multiple file formats",
-        "Easy to customize",
-        "Vector and raster files",
-      ],
-      compatibility: ["Ai", "Ps", "Id"],
-      tags: ["Motorcycle", "Vintage", "Biker"],
-      reviews: [
-        { rating: 5, comment: "Great vintage look for our club shirts.", author: "Dave B." },
-        { rating: 4, comment: "Good quality files, easy to work with.", author: "Lisa M." },
       ],
     },
     {
       id: 5,
-      name: "Ear Pack (SVG, PNG)",
+      name: "Daffy Duck Streetwear Design",
       images: [
-        "https://placehold.co/400x600/4a154b/ffffff?text=Ear+Pack",
+        "https://placehold.co/400x600/000000/ffffff?text=Daffy+Duck",
       ],
-      buyLink: "https://paypal.me/yourname/earpack",
-      originalPrice: 3.49,
-      discount: 35,
-      rating: 4.9,
+      buyLink: "https://paypal.me/yourname/daffy",
+      originalPrice: 9.99,
+      discount: 40,
+      rating: 4.7,
       reviewsCount: 89,
-      description: "Ear-themed SVG and PNG files for craft projects and apparel.",
-      features: [
-        "Multiple ear designs",
-        "SVG and PNG formats",
-        "High-resolution files",
-      ],
-      compatibility: ["Ai", "Ps"],
-      tags: ["Ear", "Craft", "Digital"],
+      description: "Daffy Duck streetwear design with vibrant colors and urban style.",
+      features: ["High-quality print", "Streetwear style", "Commercial use"],
+      compatibility: ["Ai", "Ps", "Id"],
+      tags: ["Daffy", "Cartoon", "Streetwear"],
       isBestseller: true,
+      seller: "GraphicSouk",
+      shipping: "Free shipping",
       reviews: [
-        { rating: 5, comment: "Perfect for my craft projects!", author: "Emily R." },
+        { rating: 5, comment: "My son loves this design!", author: "Emily R." },
       ],
     },
     {
       id: 6,
-      name: "Digital Heroes Pack",
+      name: "Heroes Digital Pack",
       images: [
-        "https://placehold.co/400x600/004e98/ffffff?text=Heroes+Pack",
+        "https://placehold.co/400x600/ffffff/000000?text=Heroes+Pack",
       ],
       buyLink: "https://paypal.me/yourname/heroes",
       originalPrice: 6.99,
@@ -163,13 +138,12 @@ export default function App() {
       rating: 4.7,
       reviewsCount: 152,
       description: "Heroes-themed digital files for various applications.",
-      features: [
-        "Multiple hero designs",
-        "SVG and PNG formats",
-        "Commercial use",
-      ],
+      features: ["Multiple hero designs", "SVG and PNG", "Commercial use"],
       compatibility: ["Ai", "Ps", "Id"],
       tags: ["Heroes", "Digital", "Comics"],
+      isBestseller: true,
+      seller: "CraftsinDigital",
+      shipping: "Free shipping",
       reviews: [
         { rating: 5, comment: "Great for my comic-themed products!", author: "Alex T." },
       ],
@@ -191,53 +165,37 @@ export default function App() {
   };
 
   // نجمة التقييم
-  const StarRating = ({ rating, size = "md", showNumber = true }) => {
-    const starSize = size === "sm" ? "h-3 w-3" : "h-4 w-4";
-    return (
-      <div className="flex items-center space-x-1">
-        {[...Array(5)].map((_, i) => (
-          <svg
-            key={i}
-            xmlns="http://www.w3.org/2000/svg"
-            className={`${starSize} ${i < Math.floor(rating) ? "text-yellow-400" : "text-gray-300"}`}
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
-          </svg>
-        ))}
-        {showNumber && <span className="ml-1 text-sm text-gray-600">{rating.toFixed(1)}</span>}
-      </div>
-    );
-  };
-
-  // جمع جميع التقييمات
-  const allReviews = designs.flatMap(d => d.reviews);
-  const totalReviews = allReviews.length;
-
-  // التمرير التلقائي بين التقييمات
-  useEffect(() => {
-    if (totalReviews <= 1) return;
-    const interval = setInterval(() => {
-      setActiveReviewIndex(prev => (prev === totalReviews - 1 ? 0 : prev + 1));
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [totalReviews]);
+  const StarRating = ({ rating, showNumber = false }) => (
+    <div className="flex items-center space-x-1">
+      {[...Array(5)].map((_, i) => (
+        <svg
+          key={i}
+          xmlns="http://www.w3.org/2000/svg"
+          className={`h-4 w-4 ${i < Math.floor(rating) ? "text-yellow-400" : "text-gray-300"}`}
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-.18-1.81.588-1.81l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" />
+        </svg>
+      ))}
+      {showNumber && <span className="ml-1 text-sm text-gray-600">{rating.toFixed(1)}</span>}
+    </div>
+  );
 
   // أيقونات التوافق
   const CompatibilityIcons = ({ compatibility }) => (
-    <div className="flex items-center space-x-2 mt-2">
+    <div className="flex items-center space-x-2 mt-1">
       {compatibility.includes("Ai") && (
-        <span className="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-1 rounded">Ai</span>
+        <span className="bg-gray-100 text-gray-800 text-xs font-medium px-1 py-0.5 rounded">Ai</span>
       )}
       {compatibility.includes("Ps") && (
-        <span className="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-1 rounded">Ps</span>
+        <span className="bg-gray-100 text-gray-800 text-xs font-medium px-1 py-0.5 rounded">Ps</span>
       )}
       {compatibility.includes("Id") && (
-        <span className="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-1 rounded">Id</span>
+        <span className="bg-gray-100 text-gray-800 text-xs font-medium px-1 py-0.5 rounded">Id</span>
       )}
       {compatibility.includes("Service") && (
-        <span className="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-1 rounded">Service</span>
+        <span className="bg-blue-100 text-blue-800 text-xs font-medium px-1 py-0.5 rounded">Service</span>
       )}
     </div>
   );
@@ -293,10 +251,10 @@ export default function App() {
           </div>
         </section>
 
-        {/* Designs Grid */}
+        {/* Designs Grid - 2 per row on mobile */}
         <section className="px-4 sm:px-6 lg:px-8 pb-16 mt-12">
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Bestsellers</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 gap-4">
             {designs.map((design) => {
               const discountedPrice = calculateDiscountedPrice(design.originalPrice, design.discount);
               return (
@@ -305,6 +263,7 @@ export default function App() {
                   className="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-all duration-300 cursor-pointer border border-gray-100"
                   onClick={() => viewDesign(design)}
                 >
+                  {/* الصورة */}
                   <div className="relative">
                     <img
                       src={design.images[0]}
@@ -316,15 +275,12 @@ export default function App() {
                         Bestseller
                       </div>
                     )}
-                    {design.isDigitalService && (
-                      <div className="absolute top-2 left-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
-                        Service
-                      </div>
-                    )}
                   </div>
+
+                  {/* التفاصيل */}
                   <div className="p-3">
-                    <div className="mb-1">
-                      <span className="text-xs font-semibold text-gray-500">Digital download</span>
+                    <div className="text-xs text-gray-500 mb-1">
+                      Digital download
                     </div>
                     
                     <h3 className="text-sm font-medium text-gray-900 line-clamp-2 mb-2">
@@ -332,13 +288,13 @@ export default function App() {
                     </h3>
                     
                     <div className="flex items-center mb-2">
-                      <StarRating rating={design.rating} size="sm" showNumber={true} />
+                      <StarRating rating={design.rating} showNumber={true} />
                       <span className="text-xs text-gray-500 ml-1">({design.reviewsCount})</span>
                     </div>
                     
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-baseline space-x-1">
-                        <span className="text-lg font-bold text-gray-900">
+                        <span className="text-lg font-bold text-green-600">
                           ${discountedPrice.toFixed(2)}
                         </span>
                         <span className="text-sm text-gray-500 line-through">
@@ -350,11 +306,9 @@ export default function App() {
                       </span>
                     </div>
                     
-                    {design.seller && (
-                      <div className="text-xs text-gray-500 mb-1">
-                        Ad by {design.seller} {design.seller === "Etsy seller" && "🌟"}
-                      </div>
-                    )}
+                    <div className="text-xs text-gray-500 mb-1">
+                      Ad by {design.seller} {design.seller === "Etsy seller" && "🌟"}
+                    </div>
                     
                     {design.shipping && (
                       <div className="text-xs text-green-600 mb-2">
@@ -529,11 +483,6 @@ export default function App() {
                     Bestseller
                   </span>
                 )}
-                {selectedDesign.isDigitalService && (
-                  <span className="bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
-                    Service
-                  </span>
-                )}
               </div>
               
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -583,7 +532,7 @@ export default function App() {
                 {selectedDesign.features.map((f, i) => (
                   <li key={i} className="flex items-start space-x-2">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-500 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-极狐 4z" clipRule="evenodd" />
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                     <span>{f}</span>
                   </li>
@@ -622,8 +571,8 @@ export default function App() {
                 onClick={handlePrevReview}
                 className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-500 hover:bg-gray-100 rounded-full p-2 shadow-md"
               >
-                <svg xmlns="极狐 http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M12.极狐 707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 极狐 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
               </button>
               <button
@@ -631,10 +580,10 @@ export default function App() {
                 className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-500 hover:bg-gray-100 rounded-full p-2 shadow-md"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0极狐 z" clipRule="evenodd" />
+                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
                 </svg>
               </button>
-            </极狐 div>
+            </div>
           </section>
         </main>
 
@@ -679,7 +628,7 @@ export default function App() {
               alert(`Thank you, ${email}!`);
               setEmail("");
             }}
-            className="flex极狐 flex-col space-y-2"
+            className="flex flex-col space-y-2"
           >
             <input
               type="email"
@@ -703,18 +652,18 @@ export default function App() {
           <h2 className="text-2xl font-bold mb-4">FOLLOW US</h2>
           <div className="flex space-x-4 mb-6">
             <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-pink-500 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 极狐 0 24 24" fill="currentColor">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.极狐 07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 极狐 4.358 2.618 6.78 6.98 6.98 极狐 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
               </svg>
             </a>
             <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className="h-6 w-6" fill="currentColor">
-                <path d="M41,17.5c-2.5,0-4.8-0.8-6.7-2.2极狐 c-1.9-1.4-3.2-3.4-3.7-5.7V9h-6v21.6c0,3-2.4,5.4-5.4,5.4s-5.4-2.4-5.4-5.4s2.4-5.4极狐 5.4-5.4c0.4,0,0.8,0,1.2,0.1V19c-0.4,极狐 0-0.8-0.1-1.2-0.1c-6,0-11,4.9-11,11s4.9,11,11,11s11-4.9,11-11V22c2.5,1.8,5.6,2.9,9,2.9V17.5z"/>
+                <path d="M41,17.5c-2.5,0-4.8-0.8-6.7-2.2c-1.9-1.4-3.2-3.4-3.7-5.7V9h-6v21.6c0,3-2.4,5.4-5.4,5.4s-5.4-2.4-5.4-5.4s2.4-5.4,5.4-5.4c0.4,0,0.8,0,1.2,0.1V19c-0.4,0-0.8-0.1-1.2-0.1c-6,0-11,4.9-11,11s4.9,11,11,11s11-4.9,11-11V22c2.5,1.8,5.6,2.9,9,2.9V17.5z"/>
               </svg>
             </a>
             <a href="https://www.pinterest.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-500 transition-colors">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.401-5.957 1.401-5.957s-.357-.714-.357-1.77c0-1.662.962-2.899 2.极狐 16-2.899 1.034 0 1.588.782 1.588 1.707 0 1.034-.659 2.574-.998 4.002-.281 1.193.593 2.16 1.775 2.16 2.127 0 3.768-2.246 3.768-5.485 0-2.861-2.063-4.877-5.008-4.877-3.48 0-5.595 2.662-5.595 5.222 0 1.068.417 2.183 1.061 2.748.093.084.114.144.077.24-.09.24-.566 1.259-.64 1.446-.02.05-.084.07-.128.027-1.1-1.026-1.775-2.41-1.775-4.146 0-3.188 2.472-6.097 6.911-6.097 3.758 0 6.669 2.656 6.669 6.05 0 3.82-2.293 6.377-5.115 6.377-1.018 0-1.963-.524-2.291-1.184l-.629 2.376c-.232.870-.861 1.997-1.264 2.684.92.283 1.897.436 2.897.436 6.627 0 11.962-5.336 11.962-11.963C24 5.373 18.627 0 12 0z"/>
+                <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.401-5.957 1.401-5.957s-.357-.714-.357-1.77c0-1.662.962-2.899 2.16-2.899 1.034 0 1.588.782 1.588 1.707 0 1.034-.659 2.574-.998 4.002-.281 1.193.593 2.16 1.775 2.16 2.127 0 3.768-2.246 3.768-5.485 0-2.861-2.063-4.877-5.008-4.877-3.48 0-5.595 2.662-5.595 5.222 0 1.068.417 2.183 1.061 2.748.093.084.114.144.077.24-.09.24-.566 1.259-.64 1.446-.02.05-.084.07-.128.027-1.1-1.026-1.775-2.41-1.775-4.146 0-3.188 2.472-6.097 6.911-6.097 3.758 0 6.669 2.656 6.669 6.05 0 3.82-2.293 6.377-5.115 6.377-1.018 0-1.963-.524-2.291-1.184l-.629 2.376c-.232.87-.861 1.997-1.264 2.684.92.283 1.897.436 2.897.436 6.627 0 11.962-5.336 11.962-11.963C24 5.373 18.627 0 12 0z"/>
               </svg>
             </a>
           </div>
@@ -746,4 +695,4 @@ export default function App() {
   );
 
   return currentView === "home" ? <HomeScreen /> : <DetailScreen />;
-                               }
+                  }
