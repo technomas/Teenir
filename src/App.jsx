@@ -1,8 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
+import  React, { useState, useEffect } from "react";
 
 export default function App() {
   const [currentView, setCurrentView] = useState("home");
@@ -10,7 +6,7 @@ export default function App() {
   const [email, setEmail] = useState("");
   const [activeReviewIndex, setActiveReviewIndex] = useState(0);
 
-  // بيانات التصاميم (4 منتجات)
+  // بيانات التصاميم مع 5 صور لكل تصميم (بدون مسافات زائدة في الروابط)
   const designs = [
     {
       id: 1,
@@ -22,7 +18,7 @@ export default function App() {
         "https://placehold.co/400x600/505070/ffffff?text=Galaxy+4",
         "https://placehold.co/400x600/626286/ffffff?text=Galaxy+5",
       ],
-      buyLink: "https://paypal.me/yourname/cyberpunk",
+      buyLink: "https://paypal.me/yourname/cyberpunk", // ← رابط مختلف (تم إزالة المسافات)
       originalPrice: 6,
       discount: 50,
       rating: 4.8,
@@ -66,60 +62,6 @@ export default function App() {
         { rating: 5, comment: "Everyone asks where I got it!", author: "Sarah L." },
       ],
     },
-    {
-      id: 3,
-      name: "Mountain Echo",
-      images: [
-        "https://placehold.co/400x600/1f4037/ffffff?text=Mountain+1",
-        "https://placehold.co/400x600/2d6a4f/ffffff?text=Mountain+2",
-        "https://placehold.co/400x600/3d8b6b/ffffff?text=Mountain+3",
-        "https://placehold.co/400x600/4db68c/ffffff?text=Mountain+4",
-        "https://placehold.co/400x600/66c2a5/ffffff?text=Mountain+5",
-      ],
-      buyLink: "https://printly.com/",
-      originalPrice: 5.8,
-      discount: 40,
-      rating: 4.7,
-      views: 980,
-      description: "Serene mountain peaks under a golden sunrise, symbolizing peace and adventure.",
-      features: [
-        "Organic cotton blend",
-        "Lightweight and soft",
-        "Unisex oversized cut",
-        "Eco-friendly dyes",
-      ],
-      reviews: [
-        { rating: 5, comment: "Perfect for hiking trips!", author: "Mark R." },
-        { rating: 4, comment: "Love the calm vibe of the design.", author: "Lena K." },
-      ],
-    },
-    {
-      id: 4,
-      name: "Quantum Flux",
-      images: [
-        "https://placehold.co/400x600/0c0c2e/ffffff?text=Quantum+1",
-        "https://placehold.co/400x600/1a1a4a/ffffff?text=Quantum+2",
-        "https://placehold.co/400x600/282866/ffffff?text=Quantum+3",
-        "https://placehold.co/400x600/363682/ffffff?text=Quantum+4",
-        "https://placehold.co/400x600/44449e/ffffff?text=Quantum+5",
-      ],
-      buyLink: "https://paypal.me/yourname/quantum",
-      originalPrice: 6.5,
-      discount: 55,
-      rating: 4.9,
-      views: 1870,
-      description: "Abstract representation of quantum energy waves and particles in motion.",
-      features: [
-        "Anti-shrink technology",
-        "Double-stitched seams",
-        "Vibrant color retention",
-        "Breathable microfiber",
-      ],
-      reviews: [
-        { rating: 5, comment: "Science lover's dream!", author: "Dr. Evans" },
-        { rating: 5, comment: "So many compliments on this one.", author: "Tina M." },
-      ],
-    },
   ];
 
   const calculateDiscountedPrice = (price, discount) => {
@@ -136,7 +78,7 @@ export default function App() {
     setCurrentView("detail");
   };
 
-  // نجمة التقييم
+  // نجمة تقييم
   const StarRating = ({ rating }) => (
     <div className="flex items-center space-x-1">
       {[...Array(5)].map((_, i) => (
@@ -174,61 +116,33 @@ export default function App() {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
         {/* Header */}
         <header className="bg-white shadow-sm sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-center items-center">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <h1
               onClick={goToHome}
-              className="text-3xl md:text-4xl font-extrabold text-indigo-700 cursor-pointer hover:text-indigo-900 transition-colors tracking-wide"
-              style={{ fontFamily: "'Poppins', sans-serif" }}
+              className="text-2xl font-bold text-indigo-600 cursor-pointer hover:text-indigo-800 transition-colors"
             >
               TeeNira
             </h1>
+            <p className="text-gray-600 text-sm span Art"></p>
           </div>
         </header>
 
-        {/* Hero Banner - Full Width + No Top Margin */}
-<section className="relative py-8 -mx-4 sm:-mx-6 lg:-mx-8 overflow-hidden">
-  {/* الخلفية الكاملة */}
-  <div
-    className="relative w-full h-64 md:h-80 bg-cover bg-center rounded-none shadow-lg"
-    style={{ backgroundImage: "url('/images/herobanner.jpg')" }}
-  >
-    {/* Overlay شفاف */}
-    <div className="absolute inset-0 bg-black bg-opacity-40 rounded-none"></div>
+        {/* Hero Banner */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8 text-center">
+          <img
+            src="https://placehold.co/1200x400/3b82f6/ffffff?text=Man+Wearing+Tee"
+            alt="Hero Banner"
+            className="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg mx-auto mb-6"
+          />
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">Essential Blanks</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+            We've Perfected the Oversized T-Shirt – Effortless Fit, Ultimate Comfort.
+          </p>
+        </section>
 
-    {/* المحتوى في المنتصف */}
-    <div className="relative z-10 flex flex-col items-center justify-center h-full text-white px-4">
-      <div className="mb-6 px-4 py-1 bg-white bg-opacity-20 text-white border border-white border-opacity-30 rounded-full text-sm font-medium backdrop-blur-sm">
-        Premium T-Shirt Designs
-      </div>
-
-      <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight text-center">
-        Express Your
-        <br />
-        <span className="block bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
-          Unique Style
-        </span>
-      </h2>
-
-      <p className="text-base md:text-lg mb-6 max-w-xl text-center">
-        Discover our collection of premium quality t-shirts featuring stunning designs that help you stand out from the crowd.
-      </p>
-    </div>
-  </div>
-
-  {/* العنوان الإضافي تحت الصورة (في container عادي) */}
-  <div className="mt-8 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">
-      Essential Blanks
-    </h2>
-    <p className="text-lg text-gray-600">
-      We've Perfected the Oversized T-Shirt – Effortless Fit, Ultimate Comfort.
-    </p>
-  </div>
-</section>
-
-        {/* Designs Grid - 2 per row on mobile */}
+        {/* Designs Grid */}
         <section className="px-4 sm:px-6 lg:px-8 pb-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {designs.map((design) => {
               const discountedPrice = calculateDiscountedPrice(design.originalPrice, design.discount);
               return (
@@ -320,9 +234,20 @@ export default function App() {
 
   // صفحة التفاصيل
   const DetailScreen = () => {
-    const [selectedImage, setSelectedImage] = useState(0);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [reviewIndex, setReviewIndex] = useState(0);
-    const swiperRef = useRef(null);
+
+    const handlePrevImage = () => {
+      setCurrentImageIndex(
+        (prev) => (prev === 0 ? selectedDesign.images.length - 1 : prev - 1)
+      );
+    };
+
+    const handleNextImage = () => {
+      setCurrentImageIndex(
+        (prev) => (prev === selectedDesign.images.length - 1 ? 0 : prev + 1)
+      );
+    };
 
     const handlePrevReview = () => {
       setReviewIndex(
@@ -346,19 +271,26 @@ export default function App() {
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
         {/* Header */}
         <header className="bg-white shadow-sm sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-center items-center relative">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <button
               onClick={goToHome}
-              className="absolute left-0 text-indigo-600 hover:text-indigo-800 font-medium flex items-center space-x-2"
+              className="text-indigo-600 hover:text-indigo-800 font-medium flex items-center space-x-2"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clipRule="evenodd" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z"
+                  clipRule="evenodd"
+                />
               </svg>
               <span>Back</span>
             </button>
-            <h1 className="text-3xl md:text-4xl font-extrabold text-indigo-700 tracking-wide" style={{ fontFamily: "'Poppins', sans-serif" }}>
-              TeeNira
-            </h1>
+            <h1 className="text-2xl font-bold text-indigo-600">TeeNira</h1>
           </div>
         </header>
 
@@ -367,53 +299,56 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Image Gallery */}
             <div className="flex flex-col items-center">
-              {/* Swiper الصور الرئيسية */}
-              <Swiper
-                pagination={{ clickable: true }}
-                modules={[Pagination]}
-                className="h-96 w-full max-w-md rounded-xl shadow-lg overflow-hidden mb-4"
-                onSwiper={(swiper) => {
-                  swiperRef.current = swiper;
-                }}
-                onSlideChange={(swiper) => {
-                  setSelectedImage(swiper.activeIndex);
-                }}
-                initialSlide={selectedImage}
-              >
-                {selectedDesign.images.map((image, index) => (
-                  <SwiperSlide key={index}>
-                    <img
-                      src={image.trim()}
-                      alt={`${selectedDesign.name} - ${index + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-
-              {/* مؤشرات الصور المصغّرة (Thumbnails) */}
-              <div className="flex gap-2 justify-center flex-wrap max-w-md">
-                {selectedDesign.images.map((image, index) => (
-                  <button
-                    key={index}
-                    onClick={() => {
-                      setSelectedImage(index);
-                      if (swiperRef.current) {
-                        swiperRef.current.slideTo(index);
-                      }
-                    }}
-                    className={`w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
-                      index === selectedImage
-                        ? 'border-indigo-600 scale-105'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
+              <div className="relative w-full max-w-md">
+                <img
+                  src={selectedDesign.images[currentImageIndex]}
+                  alt={`Image ${currentImageIndex + 1}`}
+                  className="w-full max-h-[500px] object-cover rounded-xl shadow-lg"
+                />
+                <button
+                  onClick={handlePrevImage}
+                  className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white text-gray-500 hover:bg-gray-100 rounded-full p-2 shadow-md"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
                   >
-                    <img
-                      src={image.trim()}
-                      alt={`Thumbnail ${index + 1}`}
-                      className="w-full h-full object-cover"
+                    <path
+                      fillRule="evenodd"
+                      d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                      clipRule="evenodd"
                     />
-                  </button>
+                  </svg>
+                </button>
+                <button
+                  onClick={handleNextImage}
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white text-gray-500 hover:bg-gray-100 rounded-full p-2 shadow-md"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div className="flex space-x-2 mt-4">
+                {selectedDesign.images.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentImageIndex(idx)}
+                    className={`w-3 h-3 rounded-full ${
+                      idx === currentImageIndex ? "bg-indigo-600" : "bg-gray-300"
+                    }`}
+                  ></button>
                 ))}
               </div>
             </div>
@@ -434,7 +369,7 @@ export default function App() {
                 <span className="text-xl text-gray-500 line-through">
                   ${selectedDesign.originalPrice}
                 </span>
-                <span className="bg-red-100 text-red-800 text-sm font-semibold px-3 py-1 rounded">
+                <span className="textred-100 text-red-800 text-sm font-semibold px-3 py-1 rounded">
                   {selectedDesign.discount}% OFF
                 </span>
               </div>
@@ -445,15 +380,24 @@ export default function App() {
               <ul className="space-y-2 mb-8">
                 {selectedDesign.features.map((f, i) => (
                   <li key={i} className="flex items-start space-x-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-500 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 text-green-500 mt-0.5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                     <span>{f}</span>
                   </li>
                 ))}
               </ul>
               <a
-                href={selectedDesign.buyLink?.trim()}
+                href={selectedDesign.buyLink}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-xl text-lg text-center transition-colors shadow-md"
@@ -484,16 +428,34 @@ export default function App() {
                 onClick={handlePrevReview}
                 className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-500 hover:bg-gray-100 rounded-full p-2 shadow-md"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </button>
               <button
                 onClick={handleNextReview}
                 className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white text-gray-500 hover:bg-gray-100 rounded-full p-2 shadow-md"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clipRule="evenodd"
+                  />
                 </svg>
               </button>
             </div>
@@ -562,37 +524,77 @@ export default function App() {
 
         {/* Social & Payments */}
         <div>
+          {/* Follow Us */}
           <h2 className="text-2xl font-bold mb-4">FOLLOW US</h2>
           <div className="flex space-x-4 mb-6">
-            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-pink-500 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
+            {/* Instagram */}
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-pink-500 transition-colors"
+              aria-label="Instagram"
+            >
+             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">  
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+             </svg> 
             </a>
-            <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className="h-6 w-6" fill="currentColor">
-                <path d="M41,17.5c-2.5,0-4.8-0.8-6.7-2.2c-1.9-1.4-3.2-3.4-3.7-5.7V9h-6v21.6c0,3-2.4,5.4-5.4,5.4s-5.4-2.4-5.4-5.4s2.4-5.4,5.4-5.4c0.4,0,0.8,0,1.2,0.1V19c-0.4,0-0.8-0.1-1.2-0.1c-6,0-11,4.9-11,11s4.9,11,11,11s11-4.9,11-11V22c2.5,1.8,5.6,2.9,9,2.9V17.5z"/>
-              </svg>
+
+            {/* TikTok */}
+            <a
+              href="https://www.tiktok.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-gray-300 transition-colors"
+              aria-label="TikTok"
+            >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 48 48"
+                  className="h-6 w-6"
+                  fill="currentColor"
+                  >
+                  <path d="M41,17.5c-2.5,0-4.8-0.8-6.7-2.2c-1.9-1.4-3.2-3.4-3.7-5.7V9h-6v21.6
+                    c0,3-2.4,5.4-5.4,5.4s-5.4-2.4-5.4-5.4s2.4-5.4,5.4-5.4c0.4,0,0.8,0,1.2,0.1V19
+                    c-0.4,0-0.8-0.1-1.2-0.1c-6,0-11,4.9-11,11s4.9,11,11,11s11-4.9,11-11V22
+                    c2.5,1.8,5.6,2.9,9,2.9V17.5z"/>
+                </svg>
             </a>
-            <a href="https://www.pinterest.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-red-500 transition-colors">
+
+            {/* Pinterest */}
+            <a
+              href="https://www.pinterest.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:text-red-500 transition-colors"
+              aria-label="Pinterest"
+            >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.401-5.957 1.401-5.957s-.357-.714-.357-1.77c0-1.662.962-2.899 2.16-2.899 1.034 0 1.588.782 1.588 1.707 0 1.034-.659 2.574-.998 4.002-.281 1.193.593 2.16 1.775 2.16 2.127 0 3.768-2.246 3.768-5.485 0-2.861-2.063-4.877-5.008-4.877-3.48 0-5.595 2.662-5.595 5.222 0 1.068.417 2.183 1.061 2.748.093.084.114.144.077.24-.09.24-.566 1.259-.64 1.446-.02.05-.084.07-.128.027-1.1-1.026-1.775-2.41-1.775-4.146 0-3.188 2.472-6.097 6.911-6.097 3.758 0 6.669 2.656 6.669 6.05 0 3.82-2.293 6.377-5.115 6.377-1.018 0-1.963-.524-2.291-1.184l-.629 2.376c-.232.87-.861 1.997-1.264 2.684.92.283 1.897.436 2.897.436 6.627 0 11.962-5.336 11.962-11.963C24 5.373 18.627 0 12 0z"/>
               </svg>
             </a>
           </div>
 
+          {/* Payment Methods */}
           <div>
             <h2 className="text-2xl font-bold mb-4 text-red-500">PAYMENTS</h2>
             <div className="flex flex-row gap-4 justify-center md:justify-start">
+              {/* Litecoin */}
               <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
                 <img src="https://i.ibb.co/Hjs6NsQ/buy-ltc.png" alt="buy-ltc" className="h-10 hover:scale-105 transition-transform" />
               </a>
+
+              {/* Bitcoin */}
               <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
                 <img src="https://i.ibb.co/HptcKHmr/buy-btc.png" alt="buy-btc" className="h-10 hover:scale-105 transition-transform" />
               </a>
+
+              {/* Credit Card */}
               <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
                 <img src="https://i.ibb.co/GvhCDLf4/cc1.png" alt="cc1" className="h-10 hover:scale-105 transition-transform" />
               </a>
+
+              {/* Perfect Money */}
               <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
                 <img src="https://i.ibb.co/xtW552xY/buy-perfectmoney.png" alt="buy-perfectmoney" className="h-10 hover:scale-105 transition-transform" />
               </a>
@@ -601,6 +603,7 @@ export default function App() {
         </div>
       </div>
 
+      {/* Copyright */}
       <div className="mt-12 pt-6 border-t border-gray-800 text-center text-gray-400 text-sm">
         &copy; {new Date().getFullYear()} TeeNira. All rights reserved.
       </div>
@@ -608,4 +611,4 @@ export default function App() {
   );
 
   return currentView === "home" ? <HomeScreen /> : <DetailScreen />;
-        }
+}
